@@ -1,0 +1,12 @@
+source "https://rubygems.org"
+git_source(:github) { |repo| "https://github.com/#{repo}.git" }
+
+gemspec
+git "https://github.com/content-management-on-rails/cmor" do
+  gem 'cmor'
+  gem 'cmor-core'
+  gem 'cmor-core-backend'
+end
+gem "rails", "~> 7.0"
+gem "rails-dummy", github: "robotex82/rails-dummy", branch: "feature/ruby-3-2-compatibility"
+
