@@ -1,0 +1,90 @@
+en:
+  activemodel:
+    models:
+      cmor/time_tracking/items_report_service:
+        one: Item Report
+        other: Item Reports
+      cmor/time_tracking/project_report_service:
+        one: Project Report
+        other: Project Reports
+    attributes:
+      cmor/time_tracking/items_report_service/result:
+        billable_hours: Billable hours
+        billed_hours: Billed hours
+        confirmed_hours: Confirmed hours
+        count: Count
+        draft_hours: Draft hours
+        hours: Hours
+        not_billable_hours: Not billable hours
+      cmor/time_tracking/project_report_service/result:
+        issues_count: Issues count
+        items_count: Items count
+        hours: Hours
+        draft_hours: Draft hours
+        confirmed_hours: Confirmed hours
+        billable_hours: Billable hours
+        not_billable_hours: Not billable hours
+        billed_hours: Billed hours
+  activerecord:
+    models:
+      cmor/time_tracking/project:
+        one: Project
+        other: Projects
+      cmor/time_tracking/issue:
+        one: Issue
+        other: Issues
+      cmor/time_tracking/item:
+        one: Item
+        other: Items
+    attributes:
+      shared_attributes: &shared_attributes
+        description: Description
+        created_at: Created at
+        id: ID
+        identifier: Identifier
+        name: Name
+        position: Position
+        published_at: Published at
+        published: Published
+        updated_at: Updated at
+      cmor/time_tracking/issue:
+        <<: *shared_attributes
+        summary: Summary
+        project_id: Project
+        project: Project
+      cmor/time_tracking/item:
+        <<: *shared_attributes
+        billing_state: Billing state
+        billing_state_state: Billing state
+        billing_state_actions: Billing state actions
+        duration: Duration
+        duration_in_hours: Duration in hours
+        end_at: End at
+        external_issue_identifier: External issue identifier
+        issue_id: Issue
+        issue: Issue
+        month: Month
+        owner: Owner
+        owner_id: Owner
+        start_at: Start at
+        year: Year
+      cmor/time_tracking/project:
+        <<: *shared_attributes
+        billable_hours: Billable hours
+        billed_hours: Billed hours
+        confirmed_hours: Confirmed hours
+        draft_hours: Draft hours
+        hours: Hours
+        issues_count: Issues count
+        items_count: Items count
+        not_billable_hours: Not billable hours
+    values:
+  classes:
+    cmor/time_tracking/engine: Time Tracking
+  cmor:
+    time_tracking:
+      home:
+        index_extras:
+          items_in_this_month: Items in this month
+  routes:
+    cmor-time-tracking-engine: time-tracking

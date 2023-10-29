@@ -46,9 +46,24 @@ rails generate cmor:core:install
 # Setup Cmor::Core::Backend
 rails generate cmor:core:backend:install
 
+# Setup Cmor::Core::Settings
+rails generate cmor:core:settings:install
+rails cmor_core_settings:install:migrations
+
+# Setup owner model
+rails g model User email:string
+sed -i "s|class User < ApplicationRecord|class User < ApplicationRecord\n  def human\n    email\n  end|g" app/models/user.rb
+
+# Setup jira integration
+cp ../../.env ./
+
 # Setup Cmor::TimeTracking
-rails cmor_time_tracking:install:migrations
 rails generate cmor:time_tracking:install
+rails cmor_time_tracking:install:migrations
 
 # Setup database
 rails db:migrate db:test:prepare
+
+# Setup seeds
+echo "Cmor::TimeTracking::Engine.load_seed" >> db/seeds.rb
+rails db:seed

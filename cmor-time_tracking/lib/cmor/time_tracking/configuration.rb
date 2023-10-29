@@ -16,6 +16,10 @@ module Cmor
             @values[key] = value
           end
         end
+
+        def cmor
+          Cmor
+        end
       end
 
       @values = {}
@@ -32,6 +36,9 @@ module Cmor
       define_option :resource_controllers, default: -> { [] }
       define_option :service_controllers, default: -> { [] }
       define_option :sidebar_controllers, default: -> { [] }
+
+      define_option :item_owner_class, default: -> { User }
+      define_option :item_owner_factory_name, default: -> { :user }
     end
   end
 end

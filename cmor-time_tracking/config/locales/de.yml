@@ -1,0 +1,90 @@
+de:
+  activemodel:
+    models:
+      cmor/time_tracking/items_report_service:
+        one: Zeitbuchungs-Report
+        other: Zeitbuchungs-Reports
+      cmor/time_tracking/project_report_service:
+        one: Projekt-Report
+        other: Projekt-Reports
+    attributes:
+      cmor/time_tracking/items_report_service/result:
+        billable_hours: Abrechenbare Stunden
+        billed_hours: Abgerechnete Stunden
+        confirmed_hours: Bestätigte Stunden
+        count: Anzahl
+        draft_hours: Entwurf Stunden
+        hours: Stunden
+        not_billable_hours: Nicht abrechenbare Stunden
+      cmor/time_tracking/project_report_service/result:
+        issues_count: Anzahl Tickets
+        items_count: Anzahl Buchungen
+        hours: Stunden
+        draft_hours: Entwurf Stunden
+        confirmed_hours: Bestätigte Stunden
+        billable_hours: Abrechenbare Stunden
+        not_billable_hours: Nicht abrechenbare Stunden
+        billed_hours: Abgerechnete Stunden
+  activerecord:
+    models:
+      cmor/time_tracking/project:
+        one: Projekt
+        other: Projekte
+      cmor/time_tracking/issue:
+        one: Ticket
+        other: Tickets
+      cmor/time_tracking/item:
+        one: Zeitbuchung
+        other: Zeitbuchungen
+    attributes:
+      shared_attributes: &shared_attributes
+        description: Beschreibung
+        created_at: Erstellt am
+        id: ID
+        identifier: Bezeichner
+        name: Name
+        position: Position
+        published_at: Veröffentlicht am
+        published: Veröffentlicht
+        updated_at: Aktualisiert am
+      cmor/time_tracking/issue:
+        <<: *shared_attributes
+        project_id: Projekt
+        project: Projekt
+        summary: Zusammenfassung
+      cmor/time_tracking/item:
+        <<: *shared_attributes
+        billing_state: Abrechnungsstatus
+        billing_state_state: Abrechnungsstatus
+        billing_state_actions: Abrechnungsstatus Aktionen
+        duration: Dauer
+        duration_in_hours: Dauer in Stunden
+        end_at: Ende
+        external_issue_identifier: Externe Ticketnummer
+        issue_id: Ticket
+        issue: Ticket
+        month: Monat
+        owner: Besitzer
+        owner_id: Besitzer
+        start_at: Beginn
+        year: Jahr
+      cmor/time_tracking/project:
+        <<: *shared_attributes
+        billable_hours: Abrechenbare Stunden
+        billed_hours: Abgerechnete Stunden
+        confirmed_hours: Bestätigte Stunden
+        draft_hours: Entwurf Stunden
+        hours: Stunden
+        issues_count: Anzahl Tickets
+        items_count: Anzahl Buchungen
+        not_billable_hours: Nicht abrechenbare Stunden
+    values:
+  classes:
+    cmor/time_tracking/engine: Zeiterfassung
+  cmor:
+    time_tracking:
+      home:
+        index_extras:
+          items_in_this_month: Buchungen in diesem Monat
+  routes:
+    cmor-time-tracking-engine: time-tracking

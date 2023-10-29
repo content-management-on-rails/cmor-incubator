@@ -1,0 +1,6 @@
+= table.id sort: true
+= table.association :project, sort: true, label_method: :human, link_to: ->(resource) { url_for(resource.project) }
+= table.column :identifier
+= table.column :summary
+= table.column :items_count
+

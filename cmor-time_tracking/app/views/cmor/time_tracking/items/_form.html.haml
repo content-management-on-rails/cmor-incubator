@@ -1,0 +1,49 @@
+.row
+  .col
+    = form.association :owner, label_method: :human
+
+.row
+  .col-12.col-md-6
+    = form.input :start_at, as: :date_time_picker, side_by_side: true
+  .col-12.col-md-6
+    = form.input :end_at, as: :date_time_picker, side_by_side: true
+
+.row
+  .col-12
+    = form.input :external_issue_identifier, as: (jira_integration_enabled? ? :select : :string)
+  .col-12
+    %label
+      External Issue Description
+    .card
+      .card-body
+        #external_issue_description
+  .col-12
+    = form.input :description
+
+- if jira_integration_enabled?
+  :javascript
+    $(document).ready(function() {
+      $("#item_external_issue_identifier").select2({
+        ajax: {
+          delay:500,
+          url: "#{url_for(controller: :external_issues, action: :autocomplete, format: :json)}",
+          processResults: function (data) {
+            return {
+              results: data.map(function(item) {
+                return { id: item.key, text: `${item.key} ${item.fields.summary}`, description: item.fields.description }
+              })
+            };
+          }
+        },
+        templateSelection: function (data, container) {
+          // Load the description into #external_issue_description input value
+          $("#external_issue_description").html(data.description);
+          return data.id;
+        }
+      });
+    });
+
+  :css
+    .select2-container {
+      width: 100% !important;
+    }

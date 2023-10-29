@@ -1,0 +1,16 @@
+.row
+  .col-12.col-md-3
+    = form.input :owner_id_eq, as: :select, collection: Cmor::TimeTracking::Configuration.item_owner_class.call.all, include_blank: true, label_method: :human
+  .col-12.col-md-3
+    = form.input :project_id_eq, association: :issue, as: :select, collection: Cmor::TimeTracking::Project.all, include_blank: true, label_method: :human
+  .col-12.col-md-3
+    = form.input :year_eq
+  .col-12.col-md-3
+    = form.input :month_eq
+.row
+  .col-12.col-md-3
+    = form.input :description_cont
+  .col-12.col-md-3
+    = form.input :external_issue_identifier_cont
+  .col-12.col-md-3
+    = form.input :billing_state_eq, as: :select, collection: Cmor::TimeTracking::Item.aasm(:billing_state).states.map(&:name), include_blank: true

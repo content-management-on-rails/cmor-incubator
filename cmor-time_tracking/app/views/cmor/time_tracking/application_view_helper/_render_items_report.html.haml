@@ -1,0 +1,56 @@
+.card.mt-4
+  .card-header.d-flex.justify-content-between
+    .start.d-flex.align-items-center
+      .mr-1= fa_icon 'chart-bar'
+      = title || result.service.class.model_name.human
+    .end
+      / Add button to toggle the visibility of the report
+      = link_to '#', class: 'btn btn-sm', data: { toggle: 'collapse', target: '#items_report' } do
+        = fa_icon 'chevron-down'
+  / make card collapsible
+  #items_report.collapse{ class: collapse_css_class }
+    .card-body
+      .row
+        .col-12.col-md-4.mb-4
+          / add chartjs chart
+          %canvas.mx-auto{ id: 'items_report_chart' }
+        .col-12.col-md-8
+          = resource_table(resource: result) do |table|
+            = table.row :count
+            = table.row :hours
+            = table.row :draft_hours
+            = table.row :confirmed_hours
+            = table.row :billable_hours
+            = table.row :not_billable_hours
+            = table.row :billed_hours
+
+:javascript
+  $(document).ready(function() {
+    var ctx = document.getElementById('items_report_chart').getContext('2d');
+    var myChart = new Chart(ctx, {
+      type: 'pie',
+      data: {
+        labels: #{ %w(draft_hours confirmed_hours billable_hours not_billable_hours billed_hours).map { |key| result.class.human_attribute_name(key) }.to_json },
+        datasets: [{
+          data: [
+            #{result.draft_hours},
+            #{result.confirmed_hours},
+            #{result.billable_hours},
+            #{result.not_billable_hours},
+            #{result.billed_hours}
+          ]
+        }]
+      },
+      options: {
+        responsive: true,
+        scales: {
+          yAxes: [{
+            ticks: {
+              beginAtZero: true,
+              stepSize: 1
+            }
+          }]
+        }
+      }
+    });
+  });

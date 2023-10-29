@@ -1,0 +1,4 @@
+:ruby
+  @items_in_this_month = Cmor::TimeTracking::Item.in_this_month
+
+= time_tracking_helper(self).render_items_report(collection: @items_in_this_month, title: t(".items_in_this_month"))

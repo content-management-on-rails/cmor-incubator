@@ -27,16 +27,56 @@ GIT
       railties
 
 PATH
-  remote: .
+  remote: ../../cmor/cmor-core-settings
   specs:
-    cmor-time_tracking (0.0.61.pre)
+    cmor-core-settings (0.0.61.pre)
       cmor-core (= 0.0.61.pre)
       cmor-core-backend (= 0.0.61.pre)
       rails (>= 7.0)
+      rao-active_collection (>= 0.0.51.pre)
+
+PATH
+  remote: ../../json_seeds-rails
+  specs:
+    json_seeds-rails (0.0.1)
+      activerecord
+      rao-service
+
+PATH
+  remote: ../../rao/rao-active_collection
+  specs:
+    rao-active_collection (0.0.51.pre)
+      rails (>= 6.1)
+      rao
+
+PATH
+  remote: ../../rao/rao-service
+  specs:
+    rao-service (0.0.51.pre)
+      activemodel
+      activesupport
+      rails (>= 6.1)
+      rao
+
+PATH
+  remote: .
+  specs:
+    cmor-time_tracking (0.0.61.pre)
+      aasm
+      cmor-core (= 0.0.61.pre)
+      cmor-core-backend (= 0.0.61.pre)
+      cmor-core-settings
+      httparty
+      rails (>= 7.0)
+      rao-active_collection
+      rao-service
+      rao-view_helper
 
 GEM
   remote: https://rubygems.org/
   specs:
+    aasm (5.5.0)
+      concurrent-ruby (~> 1.0)
     actioncable (7.1.1)
       actionpack (= 7.1.1)
       activesupport (= 7.1.1)
@@ -171,6 +211,10 @@ GEM
       delayed_job (>= 3.0, < 5)
     diff-lcs (1.5.0)
     docile (1.4.0)
+    dotenv (2.8.1)
+    dotenv-rails (2.8.1)
+      dotenv (= 2.8.1)
+      railties (>= 3.2)
     drb (2.1.1)
       ruby2_keywords
     erubi (1.12.0)
@@ -221,6 +265,9 @@ GEM
       activesupport (>= 5.1)
       haml (>= 4.0.6)
       railties (>= 5.1)
+    httparty (0.21.0)
+      mini_mime (>= 1.0.0)
+      multi_xml (>= 0.5.2)
     i18n (1.14.1)
       concurrent-ruby (~> 1.0)
     io-console (0.6.0)
@@ -262,6 +309,7 @@ GEM
     momentjs-rails (2.29.4.1)
       railties (>= 3.1)
     msgpack (1.7.2)
+    multi_xml (0.6.0)
     mutex_m (0.1.2)
     nenv (0.3.0)
     net-imap (0.4.1)
@@ -534,18 +582,23 @@ DEPENDENCIES
   cmor!
   cmor-core!
   cmor-core-backend!
+  cmor-core-settings!
   cmor-time_tracking!
+  dotenv-rails
   factory_bot_rails
   git_log_generator
   guard-bundler
   guard-rails
   guard-rspec
   guard-standardrb
+  json_seeds-rails!
   pry-rails
   puma (~> 3.11)
   rails (~> 7.0)
   rails-dummy!
   rails-i18n
+  rao-active_collection!
+  rao-service!
   rao-shoulda_matchers
   responders
   rspec-rails

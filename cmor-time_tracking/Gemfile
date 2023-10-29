@@ -10,3 +10,7 @@ end
 gem "rails", "~> 7.0"
 gem "rails-dummy", github: "robotex82/rails-dummy", branch: "feature/ruby-3-2-compatibility"
 
+gem "cmor-core-settings", path: "~/projects/gems/cmor/cmor-core-settings"
+gem "json_seeds-rails", path: "~/projects/gems/json_seeds-rails"
+gem "rao-active_collection", path: "~/projects/gems/rao/rao-active_collection"
+gem "rao-service", path: "~/projects/gems/rao/rao-service"
