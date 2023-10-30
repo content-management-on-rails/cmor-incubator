@@ -3,7 +3,7 @@ Rails.application.config.to_prepare do
     namespace: :cmor_time_tracking,
     key: "external_issue.jira.integration_enabled",
     type: :boolean,
-    default: false,
+    default: ENV.fetch("CMOR_TIME_TRACKING_EXTERNAL_ISSUE_JIRA_INTEGRATION_ENABLED", false),
     validations: {inclusion: {in: [true, false]}}
   )
   Cmor::Core::Settings::Setting.create!(
