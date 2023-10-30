@@ -1,8 +1,8 @@
 $LOAD_PATH.push File.expand_path("../lib", __FILE__)
 
 # Maintain your gem's version:
-require_relative "../../cmor/lib/cmor/version"
-require_relative "../../cmor/cmor-core-backend/lib/cmor/core/backend/gemspec"
+require_relative "../lib/cmor/version"
+require_relative "../lib/cmor/core/backend/gemspec"
 
 # Describe your gem and declare its dependencies:
 Gem::Specification.new do |spec|

@@ -1,4 +1,5 @@
 require "aasm"
+require "cmor-core-backend"
 require "cmor-core-settings"
 require "httparty"
 require "rao-active_collection"
