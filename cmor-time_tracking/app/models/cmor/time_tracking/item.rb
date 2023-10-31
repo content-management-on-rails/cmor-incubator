@@ -15,6 +15,11 @@ module Cmor::TimeTracking
       external_issue_identifier&.split("-")&.first
     end
 
+    def external_issue
+      return nil if external_issue_identifier.blank?
+      @external_issue ||= Cmor::TimeTracking::ExternalIssue.find(external_issue_identifier)
+    end
+
     aasm(:billing_state, column: "billing_state") do
       # items are draft by default. Changes to draft items are allowed.
       state :draft, initial: true

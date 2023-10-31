@@ -1,0 +1,15 @@
+.card
+  .card-header
+    %i.fa.fa-clock
+    = Cmor::TimeTracking::Item.model_name.human(count: :other)
+  .card-body
+    = collection_table(collection: @resource.items) do |table|
+      = table.id
+      = table.association :owner, label_method: :human
+      = table.column :year
+      = table.column :month
+      = table.timestamp :start_at
+      = table.timestamp :end_at
+      = table.column :duration_in_hours
+      = table.aasm_state :billing_state
+      = table.timestamps sort: true

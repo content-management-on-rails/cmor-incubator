@@ -4,11 +4,11 @@ module Cmor
       attr_accessor :url,
         :id,
         :description,
-        :iconUrl,
+        :icon_url,
         :name,
         :subtask,
-        :avatarId,
-        :hierarchyLevel
+        :avatar_id,
+        :hierarchy_level
     end
   end
 end

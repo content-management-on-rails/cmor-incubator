@@ -20,8 +20,9 @@ module Cmor
       attribute :status
       attribute :status_name
 
-      delegate :status, :summary, to: :fields
+      delegate :issuetype, :status, :summary, to: :fields
       delegate :name, to: :status, prefix: true
+      delegate :name, to: :issuetype, prefix: true
 
       def human
         "#{key} - #{summary}"
@@ -37,7 +38,7 @@ module Cmor
       end
 
       class << self
-        delegate :find, :page, :total_pages, to: :all
+        delegate :count, :find, :page, :total_pages, to: :all
       end
 
       class Relation
@@ -190,8 +191,9 @@ module Cmor
           if result.code != 200
             raise "Error while loading issues from jira: #{result.parsed_response}"
           end
-          puts "Loaded #{result.parsed_response["issues"].size} issues from jira"
-          result.parsed_response["issues"].map do |issue|
+          normalized_response = result.parsed_response.deep_transform_keys(&:underscore)
+          puts "Loaded #{normalized_response["issues"].size} issues from jira"
+          normalized_response["issues"].map do |issue|
             issue["url"] = issue.delete("self")
             @klass.new(issue)
           end

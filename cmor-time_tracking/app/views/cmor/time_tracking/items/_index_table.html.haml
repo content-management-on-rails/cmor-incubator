@@ -1,7 +1,7 @@
 = table.id sort: true
 = table.association :owner, label_method: :human, sort: { column_name: "users.email" }
-= table.association :project, label_method: :human, sort: { column_name: "cmor_time_tracking_projects.identifier" }
-= table.association :issue, label_method: :human, sort: { column_name: "cmor_time_tracking_issues.identifier" }
+= table.association :project, label_method: :human, sort: { column_name: "cmor_time_tracking_projects.identifier" }, link_to: ->(r) { cmor_time_tracking.url_for(r.project) }
+= table.association :issue, label_method: :human, sort: { column_name: "cmor_time_tracking_issues.identifier" }, link_to: ->(r) { cmor_time_tracking.url_for(r.issue) }
 = table.column :year, sort: true
 = table.column :month, sort: true
 = table.timestamp :start_at, sort: true
@@ -10,7 +10,7 @@
 = table.column :external_issue_identifier, sort: true do |resource|
   - capture_haml do
     - if resource.external_issue_identifier.present?
-      = link_to resource.external_issue_identifier, "https://beegoodit.atlassian.net/browse/#{resource.external_issue_identifier}", target: "_blank"
+      = link_to resource.external_issue_identifier, external_issue_path(id: resource.external_issue_identifier)
 = table.aasm_state :billing_state, sort: { column_name: "cmor_time_tracking_items.billing_state" }
 = table.aasm_actions :billing_state
 = table.timestamps sort: true

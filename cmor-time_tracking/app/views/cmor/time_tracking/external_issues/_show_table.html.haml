@@ -1,0 +1,10 @@
+= table.id
+= table.row :key
+= table.row :url
+= table.row :summary
+= table.row :issuetype_name do |r|
+  - capture_haml do
+    %span.badge.badge-primary #{r.issuetype_name}
+= table.row :status_name do |r|
+  - capture_haml do
+    %span.badge.badge-primary #{r.status_name}

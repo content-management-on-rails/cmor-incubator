@@ -1,17 +1,32 @@
 .card.mb-4
   .card-header
     %i.fa.fa-table
+    = @resource.issuetype.class.model_name.human
+  .card-body
+    = resource_table(resource: @resource.issuetype) do |t|
+      = t.row :id
+      = t.row :name
+      = t.row :description
+      = t.row :url
+      = t.row :icon_url
+      = t.row :subtask
+      = t.row :avatar_id
+      = t.row :hierarchy_level
+
+.card.mb-4
+  .card-header
+    %i.fa.fa-table
     = @resource.status.class.model_name.human
   .card-body
     = resource_table(resource: @resource.status) do |t|
       = t.row :id
       = t.row :description
-      = t.row :iconUrl
+      = t.row :icon_url
       = t.row :name do |r|
         - capture_haml do
           %span.badge.badge-pill.badge-primary
             = r.name
-      = t.row :statusCategory
+      = t.row :status_category
       = t.row :url
 
 .card.mb-4
@@ -79,11 +94,11 @@
     = t.row :description
     = t.row :duedate
     = t.row :environment
-    = t.row :fixVersions
+    = t.row :fix_versions
     = t.row :issuelinks
     = t.row :issuetype
     = t.row :labels
-    = t.row :lastViewed
+    = t.row :last_viewed
     = t.row :parent
     = t.row :progress
     = t.row :project
