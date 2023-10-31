@@ -1,5 +1,5 @@
 Cmor::TimeTracking::Engine.routes.draw do
-  resources :external_issues, only: [:index] do
+  resources :external_issues, only: [:index, :show] do
     get :autocomplete, on: :collection
   end
 

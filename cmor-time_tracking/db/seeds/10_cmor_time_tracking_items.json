@@ -1506,6 +1506,86 @@
     },
     {
       "item/owner.email": "Robo",
+      "start_at": "11.09.2023 15:15",
+      "end_at": "11.09.2023 15:45",
+      "description": "PPR-64",
+      "external_issue_identifier": "PPR-64",
+      "billing_state": "billable"
+    },
+    {
+      "item/owner.email": "Reinhold",
+      "start_at": "11.09.2023 14:45",
+      "end_at": "11.09.2023 15:15",
+      "description": "PPR-64",
+      "external_issue_identifier": "PPR-64",
+      "billing_state": "billable"
+    },
+    {
+      "item/owner.email": "Robo",
+      "start_at": "12.09.2023 11:00",
+      "end_at": "12.09.2023 11:15",
+      "description": "PPR-65",
+      "external_issue_identifier": "PPR-65",
+      "billing_state": "billable"
+    },
+    {
+      "item/owner.email": "Robo",
+      "start_at": "18.09.2023 14:40",
+      "end_at": "18.09.2023 15:30",
+      "description": "SSB-9",
+      "external_issue_identifier": "SSB-9",
+      "billing_state": "billable"
+    },
+    {
+      "item/owner.email": "Robo",
+      "start_at": "27.09.2023 09:40",
+      "end_at": "27.09.2023 12:15",
+      "description": "SHB-6",
+      "external_issue_identifier": "SHB-6",
+      "billing_state": "billable"
+    },
+    {
+      "item/owner.email": "Robo",
+      "start_at": "27.09.2023 13:15",
+      "end_at": "27.09.2023 16:15",
+      "description": "SHB-6",
+      "external_issue_identifier": "SHB-6",
+      "billing_state": "billable"
+    },
+    {
+      "item/owner.email": "Robo",
+      "start_at": "28.09.2023 05:30",
+      "end_at": "28.09.2023 06:30",
+      "description": "SHB-6",
+      "external_issue_identifier": "SHB-6",
+      "billing_state": "billable"
+    },
+    {
+      "item/owner.email": "Robo",
+      "start_at": "28.09.2023 09:15",
+      "end_at": "28.09.2023 15:45",
+      "description": "SHB-6",
+      "external_issue_identifier": "SHB-6",
+      "billing_state": "billable"
+    },
+    {
+      "item/owner.email": "Robo",
+      "start_at": "29.09.2023 10:00",
+      "end_at": "29.09.2023 15:30",
+      "description": "PPR-63",
+      "external_issue_identifier": "PPR-63",
+      "billing_state": "billable"
+    },
+    {
+      "item/owner.email": "Robo",
+      "start_at": "29.09.2023 15:30",
+      "end_at": "29.09.2023 18:00",
+      "description": "PPR-69",
+      "external_issue_identifier": "PPR-69",
+      "billing_state": "billable"
+    },
+    {
+      "item/owner.email": "Robo",
       "start_at": "05.10.2023 09:40",
       "end_at": "05.10.2023 10:00",
       "description": "PPR-70",
@@ -1582,6 +1662,14 @@
       "end_at": "27.10.2023 12:30",
       "description": "Sammelbuchung Projektarbeit/Koordination",
       "external_issue_identifier": "BDS-17",
+      "billing_state": "billable"
+    },
+    {
+      "item/owner.email": "Robo",
+      "start_at": "29.10.2023 16:15",
+      "end_at": "29.10.2023 17:00",
+      "description": "BDS-22",
+      "external_issue_identifier": "BDS-22",
       "billing_state": "billable"
     }
   ]

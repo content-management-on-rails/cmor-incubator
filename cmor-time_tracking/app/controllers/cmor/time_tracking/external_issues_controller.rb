@@ -6,7 +6,7 @@ module Cmor
       end
 
       def self.available_rest_actions
-        %i[index]
+        %i[index show]
       end
 
       before_action :load_collection_for_autocomplete, only: [:autocomplete]

@@ -89,6 +89,11 @@ module Cmor
         value["url"] = value.delete("self")
         @issuetype = Cmor::TimeTracking::ExternalIssue::Issuetype.new(value)
       end
+
+      def status=(value)
+        value["url"] = value.delete("self")
+        @status = Cmor::TimeTracking::ExternalIssue::Status.new(value)
+      end
     end
   end
 end

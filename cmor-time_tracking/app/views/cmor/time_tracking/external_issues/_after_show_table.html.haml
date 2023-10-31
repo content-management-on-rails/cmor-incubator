@@ -1,0 +1,105 @@
+.card.mb-4
+  .card-header
+    %i.fa.fa-table
+    = @resource.status.class.model_name.human
+  .card-body
+    = resource_table(resource: @resource.status) do |t|
+      = t.row :id
+      = t.row :description
+      = t.row :iconUrl
+      = t.row :name do |r|
+        - capture_haml do
+          %span.badge.badge-pill.badge-primary
+            = r.name
+      = t.row :statusCategory
+      = t.row :url
+
+.card.mb-4
+  .card-header
+    %i.fa.fa-table
+    = @resource.fields.class.model_name.human
+  .card-body
+  = resource_table(resource: @resource.fields) do |t|
+    = t.row :aggregateprogress
+    = t.row :aggregatetimeestimate
+    = t.row :aggregatetimeoriginalestimate
+    = t.row :aggregatetimespent
+    = t.row :assignee
+    = t.row :components
+    = t.row :created
+    = t.row :creator
+    = t.row :customfield_10000
+    = t.row :customfield_10001
+    = t.row :customfield_10002
+    = t.row :customfield_10003
+    = t.row :customfield_10004
+    = t.row :customfield_10005
+    = t.row :customfield_10006
+    = t.row :customfield_10007
+    = t.row :customfield_10008
+    = t.row :customfield_10009
+    = t.row :customfield_10010
+    = t.row :customfield_10011
+    = t.row :customfield_10012
+    = t.row :customfield_10013
+    = t.row :customfield_10014
+    = t.row :customfield_10015
+    = t.row :customfield_10016
+    = t.row :customfield_10017
+    = t.row :customfield_10018
+    = t.row :customfield_10019
+    = t.row :customfield_10020
+    = t.row :customfield_10021
+    = t.row :customfield_10022
+    = t.row :customfield_10023
+    = t.row :customfield_10024
+    = t.row :customfield_10025
+    = t.row :customfield_10028
+    = t.row :customfield_10100
+    = t.row :customfield_10101
+    = t.row :customfield_10102
+    = t.row :customfield_10103
+    = t.row :customfield_10104
+    = t.row :customfield_10105
+    = t.row :customfield_10106
+    = t.row :customfield_10107
+    = t.row :customfield_10108
+    = t.row :customfield_10109
+    = t.row :customfield_10110
+    = t.row :customfield_10111
+    = t.row :customfield_10112
+    = t.row :customfield_10113
+    = t.row :customfield_10114
+    = t.row :customfield_10115
+    = t.row :customfield_10116
+    = t.row :customfield_10117
+    = t.row :customfield_10118
+    = t.row :customfield_10120
+    = t.row :customfield_10121
+    = t.row :description
+    = t.row :duedate
+    = t.row :environment
+    = t.row :fixVersions
+    = t.row :issuelinks
+    = t.row :issuetype
+    = t.row :labels
+    = t.row :lastViewed
+    = t.row :parent
+    = t.row :progress
+    = t.row :project
+    = t.row :reporter
+    = t.row :resolution
+    = t.row :resolutiondate
+    = t.row :security
+    = t.row :status
+    = t.row :statuscategorychangedate
+    = t.row :subtasks
+    = t.row :summary
+    = t.row :timeestimate
+    = t.row :timeoriginalestimate
+    = t.row :timespent
+    = t.row :updated
+    = t.row :versions
+    = t.row :votes
+    = t.row :watches
+    = t.row :workratio

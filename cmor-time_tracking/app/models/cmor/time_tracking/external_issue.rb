@@ -17,8 +17,15 @@ module Cmor
 
       attribute :issuetype_name
       attribute :summary
+      attribute :status
+      attribute :status_name
 
-      delegate :summary, to: :fields
+      delegate :status, :summary, to: :fields
+      delegate :name, to: :status, prefix: true
+
+      def human
+        "#{key} - #{summary}"
+      end
 
       def fields=(value)
         super(Cmor::TimeTracking::ExternalIssue::Fields.new(value))
@@ -29,7 +36,9 @@ module Cmor
         all.where(["summary LIKE ?", term.downcase])
       end
 
-      # define_attribute_methods :key
+      class << self
+        delegate :find, :page, :total_pages, to: :all
+      end
 
       class Relation
         class WhereCondition
@@ -66,6 +75,8 @@ module Cmor
         def initialize(klass)
           @klass = klass
           @where_conditions = []
+          @page = nil
+          @per = nil
         end
 
         def each
@@ -89,7 +100,38 @@ module Cmor
           @where_conditions.each do |condition|
             jql = condition.append(jql)
           end
+
           load_issues_from_jira!(jql)
+        end
+
+        def page(page)
+          @page = (page || 1).to_i
+          self
+        end
+
+        def per(per)
+          @per = per.to_i
+          self
+        end
+
+        def total_pages
+          count / @per
+        end
+
+        def current_page
+          @page
+        end
+
+        def limit_value
+          @per
+        end
+
+        def count
+          load_collection!.size
+        end
+
+        def find(id)
+          where(id: id).first || raise(ActiveRecord::RecordNotFound, "Couldn't find #{klass.name} with 'id'=#{id}")
         end
 
         def where(conditions)
@@ -118,13 +160,23 @@ module Cmor
           )
         end
 
+        def jira_url
+          "#{jira_base_url}/rest/api/2/search"
+        end
+
         def load_issues_from_jira!(jql)
-          puts "Loading issues from jira with JQL #{jql}..."
+          puts "Loading issues from jira [#{jira_url}] with JQL #{jql}..."
+
+          body = {
+            jql: jql
+          }
+
+          body[:maxResults] = @per if @per.present?
+          body[:startAt] = @page - 1 if @page.present?
+
           result = HTTParty.post(
-            "#{jira_base_url}/rest/api/2/search",
-            body: {
-              jql: jql
-            }.to_json,
+            jira_url,
+            body: body.to_json,
             headers: {
               "Content-Type" => "application/json",
               "Authorization" => "Basic #{jira_basic_auth_token}}"
@@ -191,6 +243,14 @@ module Cmor
         # attrs.each do |key, value|
         #   @attributes[key.to_sym] = value
         # end
+      end
+
+      def persisted?
+        !new_record?
+      end
+
+      def new_record?
+        false
       end
 
       delegate :as_json, to: :attributes
