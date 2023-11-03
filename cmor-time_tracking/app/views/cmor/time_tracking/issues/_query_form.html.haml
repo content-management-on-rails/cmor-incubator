@@ -1,0 +1,3 @@
+= form.input :identifier_cont, association: :project, collection: Cmor::TimeTracking::Project.pluck(:identifier).uniq.compact.sort
+= form.input :identifier_cont
+= form.input :external_state_eq, collection: Cmor::TimeTracking::Issue.pluck(:external_state).uniq.compact.sort

@@ -10,7 +10,7 @@ module Cmor
       private
 
       def load_collection_scope
-        super.includes(:project)
+        super.eager_load(:project)
       end
 
       def permitted_params

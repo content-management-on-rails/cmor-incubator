@@ -54,7 +54,9 @@ de:
         updated_at: Aktualisiert am
       cmor/time_tracking/issue:
         <<: *shared_attributes
+        external_actions: Externe Aktionen
         external_state: Externer Status
+        items_count: Zeitbuchungen
         project_id: Projekt
         project: Projekt
         summary: Zusammenfassung

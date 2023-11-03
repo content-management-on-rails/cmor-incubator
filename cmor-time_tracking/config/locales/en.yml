@@ -54,7 +54,9 @@ en:
         updated_at: Updated at
       cmor/time_tracking/issue:
         <<: *shared_attributes
+        external_actions: External actions
         external_state: External state
+        items_count: Items
         summary: Summary
         project_id: Project
         project: Project

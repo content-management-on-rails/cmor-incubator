@@ -1,11 +1,11 @@
 = table.id sort: true
 = table.association :project, sort: true, label_method: :human, link_to: ->(resource) { url_for(resource.project) }
 = table.column :identifier
+= table.column :summary
+= table.column :items_count
 = table.column :external_state do |r|
   - capture_haml do
     %span.badge.badge-primary= r.external_state
-= table.column :summary
-= table.column :items_count
 = table.column :external_actions do |r|
   - capture_haml do
     = link_to(polymorphic_url([Cmor::TimeTracking::UpdateIssueFromExternalService], { update_issue_from_external_service: { issue_id: r.id } }), class: "btn btn-xs btn-primary", method: :post) do
