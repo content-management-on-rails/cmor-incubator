@@ -1,0 +1,7 @@
+= collection_table(collection: @result.diff) do |t|
+  = t.column :attribute_name do |r|
+    - r[:attribute_name]
+  = t.column :old_value do |r|
+    - r[:old_value]
+  = t.column :new_value do |r|
+    - r[:new_value]

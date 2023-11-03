@@ -1,0 +1,2 @@
+= link_to(polymorphic_url([Cmor::TimeTracking::UpdateIssueFromExternalService], { update_issue_from_external_service: { issue_id: @resource.id } }), class: "btn btn-primary btn-lg btn-circle", title: t(".update_from_external"), method: :post) do
+  %i.fas.fa-cloud-download-alt

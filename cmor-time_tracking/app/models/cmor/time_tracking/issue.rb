@@ -5,6 +5,11 @@ module Cmor::TimeTracking
 
     validates :identifier, presence: true, uniqueness: {scope: :project_id}
 
+    def external_issue
+      return nil if identifier.blank?
+      @external_issue ||= Cmor::TimeTracking::ExternalIssue.find(identifier)
+    end
+
     def human
       "#{project.identifier}##{identifier}"
     end

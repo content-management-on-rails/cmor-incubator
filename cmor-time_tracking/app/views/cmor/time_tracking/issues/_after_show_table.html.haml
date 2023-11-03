@@ -13,3 +13,4 @@
       = table.column :duration_in_hours
       = table.aasm_state :billing_state
       = table.timestamps sort: true
+      = render partial: "administrador/resources_controller/base/index_table_actions", locals: { table: table }

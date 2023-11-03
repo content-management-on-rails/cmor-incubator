@@ -1,0 +1,9 @@
+= table.id
+= table.association :project, label_method: :human, link_to: ->(r) { url_for(r.project) }
+= table.row :identifier
+= table.row :external_state do |r|
+  - capture_haml do
+    %span.badge.badge-primary= r.external_state
+= table.row :summary
+= table.row :description
+= table.timestamps

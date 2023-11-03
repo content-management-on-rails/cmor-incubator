@@ -202,6 +202,8 @@ GEM
     coffee-script-source (1.12.2)
     concurrent-ruby (1.2.2)
     connection_pool (2.4.1)
+    crack (0.4.5)
+      rexml
     crass (1.0.6)
     date (3.3.3)
     delayed_job (4.1.11)
@@ -265,6 +267,7 @@ GEM
       activesupport (>= 5.1)
       haml (>= 4.0.6)
       railties (>= 5.1)
+    hashdiff (1.0.1)
     httparty (0.21.0)
       mini_mime (>= 1.0.0)
       multi_xml (>= 0.5.2)
@@ -560,6 +563,11 @@ GEM
     tzinfo (2.0.6)
       concurrent-ruby (~> 1.0)
     unicode-display_width (2.5.0)
+    vcr (6.2.0)
+    webmock (3.19.1)
+      addressable (>= 2.8.0)
+      crack (>= 0.3.2)
+      hashdiff (>= 0.4.0, < 2.0.0)
     webpacker (5.4.4)
       activesupport (>= 5.2)
       rack-proxy (>= 0.6.1)
@@ -609,6 +617,8 @@ DEPENDENCIES
   simplecov-console
   sqlite3 (~> 1.4.0)
   standard
+  vcr
+  webmock
   webpacker
 
 BUNDLED WITH

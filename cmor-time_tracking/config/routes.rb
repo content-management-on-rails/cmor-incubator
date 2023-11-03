@@ -11,5 +11,7 @@ Cmor::TimeTracking::Engine.routes.draw do
 
   resources :projects
 
+  resource :update_issue_from_external_services, only: [:new, :create]
+
   root to: "home#index"
 end

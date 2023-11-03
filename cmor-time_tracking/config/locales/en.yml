@@ -7,6 +7,9 @@ en:
       cmor/time_tracking/project_report_service:
         one: Project Report
         other: Project Reports
+      cmor/time_tracking/update_issue_from_external_service:
+        one: Update Issue from External Service
+        other: Update Issue from External Services
     attributes:
       cmor/time_tracking/items_report_service/result:
         billable_hours: Billable hours
@@ -25,6 +28,8 @@ en:
         billable_hours: Billable hours
         not_billable_hours: Not billable hours
         billed_hours: Billed hours
+      cmor/time_tracking/update_issue_from_external_service:
+        issue_id: Issue
   activerecord:
     models:
       cmor/time_tracking/project:
@@ -49,6 +54,7 @@ en:
         updated_at: Updated at
       cmor/time_tracking/issue:
         <<: *shared_attributes
+        external_state: External state
         summary: Summary
         project_id: Project
         project: Project
@@ -86,5 +92,7 @@ en:
       home:
         index_extras:
           items_in_this_month: Items in this month
+      update_issue_from_external_services:
+        success_message: "Following fields have been updated: <p>%{diff}</p>"
   routes:
     cmor-time-tracking-engine: time-tracking

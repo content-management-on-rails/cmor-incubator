@@ -17,12 +17,14 @@ Gem::Specification.new do |spec|
   spec.files = Dir["{app,config,db,lib,spec/factories,spec/files}/**/*", "MIT-LICENSE", "Rakefile", "README.md"]
 
   spec.add_dependency "aasm"
+  spec.add_dependency "cmor-core-settings"
   spec.add_dependency "httparty"
   spec.add_dependency "rao-active_collection"
   spec.add_dependency "rao-view_helper"
   spec.add_dependency "rao-service"
-  spec.add_dependency "cmor-core-settings"
 
   spec.add_development_dependency "json_seeds-rails"
   spec.add_development_dependency "dotenv-rails"
+  spec.add_development_dependency "vcr"
+  spec.add_development_dependency "webmock"
 end

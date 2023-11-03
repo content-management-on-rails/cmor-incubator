@@ -33,10 +33,13 @@ Cmor::TimeTracking.configure do |config|
   # Set the services, that will be shown in the backend menu.
   #
   # Default: config.service_controllers = -> {[
+  #            Cmor::TimeTracking::UpdateIssueFromExternalServicesController
   #          ]}
   #
   config.service_controllers = -> {
-    []
+    [
+      Cmor::TimeTracking::UpdateIssueFromExternalServicesController
+    ]
   }
 
   # Set the sidebars, that will be shown in the backend menu.

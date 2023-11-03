@@ -20,7 +20,7 @@ module Cmor
       attribute :status
       attribute :status_name
 
-      delegate :issuetype, :status, :summary, to: :fields
+      delegate :description, :issuetype, :status, :summary, to: :fields
       delegate :name, to: :status, prefix: true
       delegate :name, to: :issuetype, prefix: true
 
@@ -132,7 +132,7 @@ module Cmor
         end
 
         def find(id)
-          where(id: id).first || raise(ActiveRecord::RecordNotFound, "Couldn't find #{klass.name} with 'id'=#{id}")
+          where(id: id).first || raise(ActiveRecord::RecordNotFound, "Couldn't find #{@klass.name} with 'id'=#{id}")
         end
 
         def where(conditions)

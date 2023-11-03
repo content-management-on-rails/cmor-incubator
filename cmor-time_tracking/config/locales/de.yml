@@ -7,6 +7,9 @@ de:
       cmor/time_tracking/project_report_service:
         one: Projekt-Report
         other: Projekt-Reports
+      cmor/time_tracking/update_issue_from_external_service:
+        one: Ticket von externem Service aktualisieren
+        other: Ticket von externem Service aktualisieren
     attributes:
       cmor/time_tracking/items_report_service/result:
         billable_hours: Abrechenbare Stunden
@@ -25,6 +28,8 @@ de:
         billable_hours: Abrechenbare Stunden
         not_billable_hours: Nicht abrechenbare Stunden
         billed_hours: Abgerechnete Stunden
+      cmor/time_tracking/update_issue_from_external_service:
+        issue_id: Ticket
   activerecord:
     models:
       cmor/time_tracking/project:
@@ -49,6 +54,7 @@ de:
         updated_at: Aktualisiert am
       cmor/time_tracking/issue:
         <<: *shared_attributes
+        external_state: Externer Status
         project_id: Projekt
         project: Projekt
         summary: Zusammenfassung
@@ -86,5 +92,7 @@ de:
       home:
         index_extras:
           items_in_this_month: Buchungen in diesem Monat
+      update_issue_from_external_services:
+        success_message: "Folgende Felder wurden aktualisiert: <p>%{diff}</p>"
   routes:
     cmor-time-tracking-engine: time-tracking

@@ -14,6 +14,10 @@ module Cmor::TimeTracking
       it { expect(subject).to validate_uniqueness_of(:identifier).scoped_to(:project_id) }
     end
 
+    describe "external_issue" do
+      it { expect(subject).to respond_to(:external_issue) }
+    end
+
     describe "human" do
       it { expect(subject).to respond_to(:human) }
     end
