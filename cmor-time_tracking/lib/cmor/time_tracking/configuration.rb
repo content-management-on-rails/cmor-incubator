@@ -39,6 +39,14 @@ module Cmor
 
       define_option :item_owner_class, default: -> { User }
       define_option :item_owner_factory_name, default: -> { :user }
+      define_option :project_owner_factory_name, default: -> { :user }
+      define_option :project_owner_autocomplete_classes, default: -> {
+        {
+          User => main_app.url_for([:autocomplete, User])
+        }
+      }
+      define_option :default_project_owner, default: -> { User.first_or_create!(email: "jane.doe@domain.local") }
+      define_option :default_currency, default: -> { "EUR" }
     end
   end
 end

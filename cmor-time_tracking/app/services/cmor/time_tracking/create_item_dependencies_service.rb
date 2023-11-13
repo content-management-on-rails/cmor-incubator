@@ -27,7 +27,13 @@ module Cmor
       end
 
       def build_project
-        Cmor::TimeTracking::Project.where(identifier: item.external_project_identifier).first_or_initialize
+        Cmor::TimeTracking::Project.where(identifier: item.external_project_identifier).first_or_initialize do |project|
+          project.owner ||= build_project_owner
+        end
+      end
+
+      def build_project_owner
+        Cmor::TimeTracking::Configuration.default_project_owner.call
       end
 
       def build_issue(project)

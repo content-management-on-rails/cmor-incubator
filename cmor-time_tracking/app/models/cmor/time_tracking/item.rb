@@ -20,6 +20,10 @@ module Cmor::TimeTracking
       @external_issue ||= Cmor::TimeTracking::ExternalIssue.find(external_issue_identifier)
     end
 
+    def human
+      "#{external_issue_identifier} (#{start_at} - #{end_at}): #{description}"
+    end
+
     aasm(:billing_state, column: "billing_state") do
       # items are draft by default. Changes to draft items are allowed.
       state :draft, initial: true
@@ -114,7 +118,7 @@ module Cmor::TimeTracking
       extend ActiveSupport::Concern
 
       included do
-        after_commit :create_dependencies, on: :create
+        after_commit :create_dependencies, if: -> { previous_changes.key?("external_issue_identifier") }
       end
 
       private

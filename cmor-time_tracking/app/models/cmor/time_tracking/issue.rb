@@ -7,7 +7,7 @@ module Cmor::TimeTracking
 
     def external_issue
       return nil if identifier.blank?
-      @external_issue ||= Cmor::TimeTracking::ExternalIssue.find(identifier)
+      @external_issue ||= Cmor::TimeTracking::ExternalIssue.where(id: identifier).first
     end
 
     def human

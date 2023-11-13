@@ -4,7 +4,9 @@ RSpec.describe "Translations", type: :model do
   {
     Cmor::TimeTracking::Issue => {},
     Cmor::TimeTracking::Item => {},
-    Cmor::TimeTracking::Project => {}
+    Cmor::TimeTracking::Project => {},
+    Cmor::TimeTracking::ProjectRate => {},
+    Cmor::TimeTracking::Rate => {}
   }.each do |model, options|
     I18n.available_locales.each do |locale|
       I18n.locale = locale

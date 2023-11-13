@@ -12,7 +12,7 @@ module Cmor
       private
 
       def permitted_params
-        params.require(:project).permit(:description, :identifier, :name)
+        params.require(:project).permit(:description, :identifier, :name, :owner_id, :owner_type)
       end
     end
   end

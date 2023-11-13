@@ -1,6 +1,6 @@
 require "rails_helper"
 
-RSpec.describe "/de/backend/time-tracking/issues", type: :feature do
+RSpec.describe "/de/backend/zeiterfassung/issues", type: :feature do
   let(:resource_class) { Cmor::TimeTracking::Issue }
   let(:resource) { create(:cmor_time_tracking_issue) }
   let(:resources) { create_list(:cmor_time_tracking_issue, 3) }

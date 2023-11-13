@@ -1,0 +1,4 @@
+= form.input :owner, as: :polymorphic_association, classes: instance_exec(&Cmor::TimeTracking::Configuration.project_owner_autocomplete_classes)
+= form.input :identifier
+= form.input :name
+= form.input :description

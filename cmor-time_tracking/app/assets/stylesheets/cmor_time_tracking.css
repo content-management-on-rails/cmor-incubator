@@ -1,0 +1,7 @@
+.table-max td, .table-max th {
+  white-space: nowrap;
+}
+
+.table-max td.max {
+  width: 100%
+}

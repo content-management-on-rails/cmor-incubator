@@ -1,0 +1,100 @@
+{
+  "project": [
+    {
+      "project/owner.email": "rva@beegoodit.de",
+      "identifier": "ABI",
+      "name": "Administration BeeGood IT",
+      "description": ""
+    },
+    {
+      "project/owner.email": "rva@beegoodit.de",
+      "identifier": "ADG",
+      "name": "Art der Gestaltung",
+      "description": ""
+    },
+    {
+      "project/owner.email": "rva@beegoodit.de",
+      "identifier": "BDS",
+      "name": "Bermuda Digital Studio GmbH",
+      "description": ""
+    },
+    {
+      "project/owner.email": "rva@beegoodit.de",
+      "identifier": "BFF",
+      "name": "Bowl for fun GmbH & Co. KG",
+      "description": ""
+    },
+    {
+      "project/owner.email": "rva@beegoodit.de",
+      "identifier": "BGIT",
+      "name": "BeeGood IT GbR",
+      "description": ""
+    },
+    {
+      "project/owner.email": "rva@beegoodit.de",
+      "identifier": "COA",
+      "name": "Con42 App",
+      "description": ""
+    },
+    {
+      "project/owner.email": "rva@beegoodit.de",
+      "identifier": "DTR",
+      "name": "Diez Transport GmbH",
+      "description": ""
+    },
+    {
+      "project/owner.email": "rva@beegoodit.de",
+      "identifier": "HDE",
+      "name": "Ballgroup UG",
+      "description": ""
+    },
+    {
+      "project/owner.email": "rva@beegoodit.de",
+      "identifier": "MIN",
+      "name": "Minlog Mineralstoff- und Logistik GmbH",
+      "description": ""
+    },
+    {
+      "project/owner.email": "rva@beegoodit.de",
+      "identifier": "ON",
+      "name": "Onboarding",
+      "description": ""
+    },
+    {
+      "project/owner.email": "rva@beegoodit.de",
+      "identifier": "PCF",
+      "name": "Ponyhof Club",
+      "description": ""
+    },
+    {
+      "project/owner.email": "rva@beegoodit.de",
+      "identifier": "PIF",
+      "name": "Pier F",
+      "description": ""
+    },
+    {
+      "project/owner.email": "rva@beegoodit.de",
+      "identifier": "PPR",
+      "name": "Peng Peng! Raum für Ideen GbR",
+      "description": ""
+    },
+    {
+      "project/owner.email": "rva@beegoodit.de",
+      "identifier": "SHB",
+      "name": "Sammelkunden Hardware BeeGood IT",
+      "description": ""
+    },
+    {
+      "project/owner.email": "rva@beegoodit.de",
+      "identifier": "SSB",
+      "name": "Sammelkunden Software BeeGood IT",
+      "description": ""
+    },
+    {
+      "project/owner.email": "rva@beegoodit.de",
+      "identifier": "ZBE",
+      "name": "Zeit fürs Bett",
+      "description": ""
+    }
+  ]
+}

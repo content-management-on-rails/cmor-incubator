@@ -24,7 +24,7 @@ module Cmor::TimeTracking
       subject { build(:cmor_time_tracking_item, external_issue_identifier: "ABC-123") }
 
       describe "job enqueueing" do
-        it { expect { subject.save }.to enqueue_job(Rao::Service::Job) }
+        it { expect { subject.save! }.to enqueue_job(Rao::Service::Job) }
       end
 
       describe "with inline job execution" do
@@ -34,8 +34,8 @@ module Cmor::TimeTracking
           perform_enqueued_jobs { example.run }
         end
 
-        it { expect { subject.save }.to change { Cmor::TimeTracking::Issue.count }.from(0).to(1) }
-        it { expect { subject.save }.to change { Cmor::TimeTracking::Project.count }.from(0).to(1) }
+        it { expect { subject.save! }.to change { Cmor::TimeTracking::Issue.count }.from(0).to(1) }
+        it { expect { subject.save! }.to change { Cmor::TimeTracking::Project.count }.from(0).to(1) }
       end
     end
 

@@ -1,4 +1,5 @@
 = table.id sort: true
+= table.association :owner, label_method: :human, link_to: ->(r) { (Object.const_defined?("Bgit") && r.owner.is_a?(Bgit::Organisations::Team)) ? bgit_organisations.url_for(r.owner) : nil }, sort: { column_name: :owner_id }
 = table.column :identifier, sort: true
 = table.column :name, sort: true
 = table.column :issues_count
@@ -8,3 +9,8 @@
 = table.column :confirmed_hours
 = table.column :billable_hours
 = table.column :billed_hours
+= table.association :current_default_rate do |resource|
+  - capture_haml do
+    - if resource.current_default_rate.present?
+      %span.badge.bg-primary
+        = resource.current_default_rate.human

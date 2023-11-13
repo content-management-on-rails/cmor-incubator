@@ -1,4 +1,16 @@
 :ruby
   @items_in_this_month = Cmor::TimeTracking::Item.in_this_month
+  @items = Cmor::TimeTracking::Item.all
+  component_id = "component-#{SecureRandom.hex(32)}"
 
-= time_tracking_helper(self).render_items_report(collection: @items_in_this_month, title: t(".items_in_this_month"))
+.component{ id: component_id }
+  = time_tracking_helper(self).render_items_report(collection: @items_in_this_month, title: t(".items_in_this_month"))
+  = time_tracking_helper(self).render_hours_by_project_report(collection: @items, title: t(".hours_by_project_report"))
+
+:css
+  ##{component_id} {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr 1fr;
+    gap: 1rem;
+  }

@@ -1,6 +1,9 @@
 en:
   activemodel:
     models:
+      cmor/time_tracking/billing_run_service:
+        one: Billing Run
+        other: Billing Runs
       cmor/time_tracking/items_report_service:
         one: Item Report
         other: Item Reports
@@ -32,15 +35,21 @@ en:
         issue_id: Issue
   activerecord:
     models:
-      cmor/time_tracking/project:
-        one: Project
-        other: Projects
       cmor/time_tracking/issue:
         one: Issue
         other: Issues
       cmor/time_tracking/item:
         one: Item
         other: Items
+      cmor/time_tracking/project:
+        one: Project
+        other: Projects
+      cmor/time_tracking/project_rate:
+        one: Project Rate
+        other: Project Rates
+      cmor/time_tracking/rate:
+        one: Rate
+        other: Rates
     attributes:
       shared_attributes: &shared_attributes
         description: Description
@@ -86,6 +95,23 @@ en:
         issues_count: Issues count
         items_count: Items count
         not_billable_hours: Not billable hours
+        owner_id: Owner
+        owner_type: Owner type
+        owner: Owner
+      cmor/time_tracking/project_rate:
+        <<: *shared_attributes
+        active_from: Active from
+        active_to: Active to
+        project_id: Project
+        project: Project
+        rate_id: Rate
+        rate: Rate
+      cmor/time_tracking/rate:
+        <<: *shared_attributes
+        unit_name: Unit name
+        unit_net_amount_cents: Unit net amount (cents)
+        unit_net_amount: Unit net amount
+        unit_tax_rate_percentage: Unit tax rate percentage
     values:
   classes:
     cmor/time_tracking/engine: Time Tracking
@@ -93,6 +119,7 @@ en:
     time_tracking:
       home:
         index_extras:
+          hours_by_project_report: Hours by project
           items_in_this_month: Items in this month
       update_issue_from_external_services:
         success_message: "Following fields have been updated: <p>%{diff}</p>"

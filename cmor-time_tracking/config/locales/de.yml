@@ -1,6 +1,9 @@
 de:
   activemodel:
     models:
+      cmor/time_tracking/billing_run_service:
+        one: Rechnungslauf
+        other: Rechnungslauf
       cmor/time_tracking/items_report_service:
         one: Zeitbuchungs-Report
         other: Zeitbuchungs-Reports
@@ -32,15 +35,21 @@ de:
         issue_id: Ticket
   activerecord:
     models:
-      cmor/time_tracking/project:
-        one: Projekt
-        other: Projekte
       cmor/time_tracking/issue:
         one: Ticket
         other: Tickets
       cmor/time_tracking/item:
         one: Zeitbuchung
         other: Zeitbuchungen
+      cmor/time_tracking/project:
+        one: Projekt
+        other: Projekte
+      cmor/time_tracking/project_rate:
+        one: Projekt-Stundensatz
+        other: Projekt-Stundensätze
+      cmor/time_tracking/rate:
+        one: Stundensatz
+        other: Stundensätze
     attributes:
       shared_attributes: &shared_attributes
         description: Beschreibung
@@ -86,15 +95,35 @@ de:
         issues_count: Anzahl Tickets
         items_count: Anzahl Buchungen
         not_billable_hours: Nicht abrechenbare Stunden
+        owner_id: Besitzer
+        owner_type: Besitzer Typ
+        owner: Besitzer
+      cmor/time_tracking/project_rate:
+        <<: *shared_attributes
+        active_from: Gültig von
+        active_to: Gültig bis
+        project_id: Projekt
+        project: Projekt
+        rate_id: Stundensatz
+        rate: Stundensatz
+      cmor/time_tracking/rate:
+        <<: *shared_attributes
+        unit_name: Einheit
+        unit_net_amount_cents: Einheit Netto-Betrag (Cent)
+        unit_net_amount: Einheit Netto-Betrag
+        unit_tax_rate_percentage: Einheit Steuersatz (%)
     values:
+      cmor/time_tracking/rate:
+        human: "%{unit_net_amount_with_currency}/%{unit_name} netto (zzgl. %{unit_tax_rate_percentage}% Steuer)"
   classes:
     cmor/time_tracking/engine: Zeiterfassung
   cmor:
     time_tracking:
       home:
         index_extras:
+          hours_by_project_report: Stunden nach Projekt
           items_in_this_month: Buchungen in diesem Monat
       update_issue_from_external_services:
         success_message: "Folgende Felder wurden aktualisiert: <p>%{diff}</p>"
   routes:
-    cmor-time-tracking-engine: time-tracking
+    cmor-time-tracking-engine: zeiterfassung

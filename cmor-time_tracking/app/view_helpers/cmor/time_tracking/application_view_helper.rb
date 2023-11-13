@@ -14,6 +14,15 @@ module Cmor
         result = Cmor::TimeTracking::ProjectReportService.call(project: resource)
         render(result: result)
       end
+
+      def render_hours_by_project_report(collection: nil, title: nil, collapse: false)
+        collection ||= Cmor::TimeTracking::Item.all
+        result = Cmor::TimeTracking::ItemsByProjectReportService.call(items: collection)
+
+        collapse_css_class = collapse ? "collapse" : "show"
+
+        render(result: result, title: title, collapse_css_class: collapse_css_class)
+      end
     end
   end
 end

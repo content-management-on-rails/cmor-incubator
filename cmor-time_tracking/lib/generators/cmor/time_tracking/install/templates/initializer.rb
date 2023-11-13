@@ -10,14 +10,18 @@ Cmor::TimeTracking.configure do |config|
   # Default: config.resources_controllers = -> {[
   #            Cmor::TimeTracking::IssuesController,
   #            Cmor::TimeTracking::ItemsController,
-  #            Cmor::TimeTracking::ProjectsController
+  #            Cmor::TimeTracking::ProjectsController,
+  #            Cmor::TimeTracking::RatesController,
+  #            Cmor::TimeTracking::ProjectRatesController
   #          ]}
   #
   config.resources_controllers = -> {
     [
       Cmor::TimeTracking::IssuesController,
       Cmor::TimeTracking::ItemsController,
-      Cmor::TimeTracking::ProjectsController
+      Cmor::TimeTracking::ProjectsController,
+      Cmor::TimeTracking::RatesController,
+      Cmor::TimeTracking::ProjectRatesController
     ]
   }
 
@@ -33,12 +37,14 @@ Cmor::TimeTracking.configure do |config|
   # Set the services, that will be shown in the backend menu.
   #
   # Default: config.service_controllers = -> {[
+  #            Cmor::TimeTracking::BillingRunServicesController,
   #            Cmor::TimeTracking::UpdateIssueFromExternalServicesController
   #          ]}
   #
   config.service_controllers = -> {
     [
-      Cmor::TimeTracking::UpdateIssueFromExternalServicesController
+      Cmor::TimeTracking::BillingRunServicesController,
+      Cmor::TimeTracking::UpdateIssueFromExternalServicesController,
     ]
   }
 
@@ -62,4 +68,36 @@ Cmor::TimeTracking.configure do |config|
   # Default: config.item_owner_factory_name = -> { :<%= @item_owner_factory_name %> }
   #
   config.item_owner_factory_name = -> { :<%= @item_owner_factory_name %> }
+
+  # Set the project owner factory name.
+  #
+  # Default: config.project_owner_factory_name = -> { :<%= @project_owner_factory_name %> }
+  #
+  config.project_owner_factory_name = -> { :<%= @project_owner_factory_name %> }
+
+  # Set the project owner autocomplete options.
+  #
+  # Default: config.project_owner_autocomplete_classes = lambda do
+  #            {
+  #              User => main_app.url_for([:autocomplete, User])
+  #            }
+  #          end
+  #
+  config.project_owner_autocomplete_classes = lambda do
+    {
+      User => main_app.url_for([:autocomplete, User])
+    }
+  end
+
+  # Set the default project owner.
+  #
+  # Default: config.default_project_owner = -> { User.first_or_create!(email: "jane.doe@domain.local") }
+  #
+  config.default_project_owner = -> { User.first_or_create!(email: "jane.doe@domain.local") }
+
+  # Set the default currency.
+  #
+  # Default: config.default_currency = -> { "EUR" }
+  #
+  config.default_currency = -> { "EUR" }
 end

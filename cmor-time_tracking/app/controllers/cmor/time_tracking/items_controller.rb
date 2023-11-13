@@ -3,6 +3,7 @@ module Cmor
     class ItemsController < Cmor::Core::Backend::ResourcesController::Base
       include Rao::ResourcesController::SortingConcern
       include Rao::ResourcesController::AasmConcern
+      include Rao::ResourcesController::BatchActionsConcern
 
       view_helper Cmor::TimeTracking::ApplicationViewHelper, as: :time_tracking_helper
 
@@ -14,12 +15,16 @@ module Cmor
 
       private
 
+      def after_destroy_many_location
+        last_location
+      end
+
       def load_collection_scope
         super.eager_load(:owner, :issue, :project)
       end
 
       def permitted_params
-        params.require(:item).permit(:description, :end_at, :owner_id, :start_at)
+        params.require(:item).permit(:description, :end_at, :external_issue_identifier, :owner_id, :start_at)
       end
 
       def jira_integration_enabled?

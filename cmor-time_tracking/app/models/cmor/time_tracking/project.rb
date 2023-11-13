@@ -1,9 +1,19 @@
 module Cmor::TimeTracking
   class Project < ApplicationRecord
+    belongs_to :owner, polymorphic: true
     has_many :issues, dependent: :destroy
     has_many :items, through: :issues
-
+    has_many :project_rates, dependent: :destroy
+    has_many :rates, through: :project_rates
+    has_many :current_rates, -> { active_now }, class_name: "Cmor::TimeTracking::ProjectRate" do
+      def default
+        includes(:rate).where(cmor_time_tracking_rates: {identifier: "default"}).first
+      end
+    end
+    has_one :current_default_rate, -> { active_now.includes(:rate).where(cmor_time_tracking_rates: {identifier: "default"}) }, class_name: "Cmor::TimeTracking::ProjectRate"
     validates :identifier, presence: true, uniqueness: true
+
+    scope :owned_by_any, ->(*owners) { where(owner: owners.flatten) }
 
     def human
       identifier

@@ -1,7 +1,7 @@
 require "rails_helper"
 
-RSpec.describe "/de/backend/time-tracking", type: :feature do
-  let(:base_path) { "/de/backend/time-tracking" }
+RSpec.describe "/de/backend/zeiterfassung", type: :feature do
+  let(:base_path) { "/de/backend/zeiterfassung" }
 
   before(:each) { visit(base_path) }
 

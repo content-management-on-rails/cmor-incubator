@@ -5,9 +5,13 @@ module Cmor::TimeTracking
     describe "associations" do
       it { expect(subject).to have_many(:issues) }
       it { expect(subject).to have_many(:items).through(:issues) }
+      it { expect(subject).to have_many(:project_rates).dependent(:destroy) }
+      it { expect(subject).to have_many(:rates).through(:project_rates) }
     end
 
     describe "validations" do
+      subject { build(:cmor_time_tracking_project) }
+
       it { expect(subject).to validate_presence_of(:identifier) }
       it { expect(subject).to validate_uniqueness_of(:identifier) }
     end

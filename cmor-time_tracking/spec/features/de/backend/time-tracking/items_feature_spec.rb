@@ -1,6 +1,6 @@
 require "rails_helper"
 
-RSpec.describe "/de/backend/time-tracking/items", type: :feature do
+RSpec.describe "/de/backend/zeiterfassung/items", type: :feature do
   let(:resource_class) { Cmor::TimeTracking::Item }
   let(:resource) { create(:cmor_time_tracking_item) }
   let(:resources) { create_list(:cmor_time_tracking_item, 3) }

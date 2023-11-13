@@ -22,13 +22,18 @@ module Cmor
         @model_name_map ||= {
           "user" => "User",
           "item" => "Cmor::TimeTracking::Item",
-          "item/owner" => {class_name: "User", as: :owner}
+          "item/owner" => {class_name: "User", as: :owner},
+          "project" => "Cmor::TimeTracking::Project",
+          "project/owner" => {class_name: "User", as: :owner}
         }
       end
 
       def attribute_name_map
         @attribute_name_map ||= {
           "Cmor::TimeTracking::Item": {
+            user: :owner
+          },
+          "Cmor::TimeTracking::Project": {
             user: :owner
           }
         }

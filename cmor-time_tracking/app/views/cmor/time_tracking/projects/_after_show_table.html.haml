@@ -1,0 +1,9 @@
+%h3= Cmor::TimeTracking::Rate.model_name.human(count: :other)
+
+= collection_table(collection: @resource.current_rates) do |table|
+  = table.id sort: true
+  = table.column :rate_identifier, sort: { column_name: "cmor_time_tracking_rates.identifier" }
+  = table.association :rate, label_method: :human
+  = table.timestamp :active_from
+  = table.timestamp :active_to
+  = render partial: "administrador/resources_controller/base/index_table_actions", locals: { table: table }

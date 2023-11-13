@@ -1,0 +1,69 @@
+- component_id = "component-#{SecureRandom.hex(32)}"
+- @items = Cmor::TimeTracking::Item.billable.all.to_a.map { |item| Cmor::TimeTracking::BillingRunService::Item.new(item: item) }
+- @service.items = @items
+
+%div{ id: component_id }
+  - @service.items.group_by(&:project).each do |project, items|
+    .card.mb-4
+      .card-header
+        = project.human
+      .card-body
+        %table.table.table-xs.table-hover.table-striped.table-max{ id: dom_id(project) }
+          %thead
+            %tr
+              / on click select all
+              %th
+                %input{ type: :checkbox, data: { "select-all": true, "parent-id": dom_id(project) } }
+              %th= Cmor::TimeTracking::Item.human_attribute_name(:issue)
+              %th= Cmor::TimeTracking::Item.human_attribute_name(:owner)
+              %th= Cmor::TimeTracking::Issue.human_attribute_name(:description)
+              %th= Cmor::TimeTracking::Item.human_attribute_name(:year)
+              %th= Cmor::TimeTracking::Item.human_attribute_name(:month)
+              %th= Cmor::TimeTracking::Item.human_attribute_name(:start_at)
+              %th= Cmor::TimeTracking::Item.human_attribute_name(:end_at)
+              %th= Cmor::TimeTracking::Item.human_attribute_name(:duration_in_hours)
+              %th= Cmor::TimeTracking::Item.human_attribute_name(:rate)
+              %th= Cmor::TimeTracking::Item.human_attribute_name(:description)
+          %tbody
+            / sort items by issue first and then by start_at
+            - items.sort_by { |item| [item.issue.human, item.start_at] }.each do |item|
+              = form.simple_fields_for :"items[]", item do |item_form|
+                %tr
+                  %td
+                    = item_form.input :selected, as: :boolean, label: false
+                  %td= item_form.object.issue_identifier
+                  %td= item_form.object.owner.human
+                  %td.max
+                    %span{ title: (item_form.object.issue.summary || "-") }
+                      = (item_form.object.issue.summary || "-").truncate(64)
+                  %td= item_form.object.year
+                  %td= item_form.object.month
+                  %td= item_form.object.start_at
+                  %td= item_form.object.end_at
+                  %td.text-right= item_form.object.duration_in_hours
+                  %td= item_form.input :project_rate_id, as: :select, collection: project.current_rates, label_method: :human, input_html: { style: "width: fit-content;" }, label: false
+                  %td= item_form.object.description
+
+:javascript
+  $(document).ready(function() {
+    console.log($("input[data-select-all]"))
+    $("input[data-select-all]").on('click', function() {
+      var parent_id = $(this).data('parent-id');
+      var checked = $(this).prop('checked');
+      var inputs = $("#" + parent_id + " input[type=checkbox]");
+      inputs.prop('checked', checked);
+    });
+  });
+
+:css
+  ##{component_id} table td {
+    vertical-align: middle;
+  }
+
+  ##{component_id} fieldset, ##{component_id} .form-group {
+    margin: 0;
+  }
+
+  ##{component_id} .form-check-input {
+    position: inherit;
+  }
