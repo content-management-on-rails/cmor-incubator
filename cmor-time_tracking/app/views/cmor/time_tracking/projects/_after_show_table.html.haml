@@ -7,3 +7,27 @@
   = table.timestamp :active_from
   = table.timestamp :active_to
   = render partial: "administrador/resources_controller/base/index_table_actions", locals: { table: table }
+
+%h3
+  = Cmor::TimeTracking::Issue.model_name.human(count: :other)
+  = "(#{@resource.issues.count})"
+
+= collection_table(collection: @resource.issues.order(identifier: :desc)) do |table|
+  = table.id sort: true
+  = table.column :identifier
+  = table.column :external_state do |r|
+    - capture_haml do
+      %span.badge.badge-primary= r.external_state
+  = table.column :summary
+  = table.column :items_count
+  = table.column :items_hours
+  = table.column :items_draft_hours
+  = table.column :items_confirmed_hours
+  = table.column :items_billable_hours
+  = table.column :items_not_billable_hours
+  = table.column :items_billed_hours
+  = table.column :external_actions do |r|
+    - capture_haml do
+      = link_to(polymorphic_url([Cmor::TimeTracking::UpdateIssueFromExternalService], { update_issue_from_external_service: { issue_id: r.id } }), class: "btn btn-xs btn-primary", method: :post) do
+        %i.fas.fa-cloud-download-alt
+        %span.btn-text= t(".download")
