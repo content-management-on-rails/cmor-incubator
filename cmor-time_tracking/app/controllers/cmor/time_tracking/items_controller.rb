@@ -20,7 +20,7 @@ module Cmor
       end
 
       def load_collection_scope
-        super.eager_load(:owner, :issue, :project)
+        super.eager_load(:owner, :issue, :project).order(start_at: :desc)
       end
 
       def permitted_params
