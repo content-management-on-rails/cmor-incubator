@@ -90,6 +90,7 @@ de:
         billable_hours: Abrechenbare Stunden
         billed_hours: Abgerechnete Stunden
         confirmed_hours: Bestätigte Stunden
+        current_default_rate: Aktueller Standard-Stundensatz
         draft_hours: Entwurf Stunden
         hours: Stunden
         issues_count: Anzahl Tickets
@@ -102,6 +103,7 @@ de:
         <<: *shared_attributes
         active_from: Gültig von
         active_to: Gültig bis
+        active: Gültig
         project_id: Projekt
         project: Projekt
         rate_id: Stundensatz

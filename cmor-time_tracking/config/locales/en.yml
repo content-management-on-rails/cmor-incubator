@@ -90,6 +90,7 @@ en:
         billable_hours: Billable hours
         billed_hours: Billed hours
         confirmed_hours: Confirmed hours
+        current_default_rate: Current default rate
         draft_hours: Draft hours
         hours: Hours
         issues_count: Issues count
@@ -102,6 +103,7 @@ en:
         <<: *shared_attributes
         active_from: Active from
         active_to: Active to
+        active: Active
         project_id: Project
         project: Project
         rate_id: Rate

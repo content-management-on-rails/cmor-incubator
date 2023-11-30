@@ -8,6 +8,10 @@ module Cmor::TimeTracking
 
     delegate :identifier, to: :rate, prefix: true
 
+    def human
+      rate.human
+    end
+
     module ActiveConcern
       extend ActiveSupport::Concern
 
@@ -18,8 +22,12 @@ module Cmor::TimeTracking
         scope :active_now, -> { active_at(Time.zone.now) }
       end
 
-      def human
-        rate.human
+      def active
+        active_at(Time.zone.now)
+      end
+
+      def active_at(point_in_time)
+        active_from <= point_in_time && active_to >= point_in_time
       end
 
       private

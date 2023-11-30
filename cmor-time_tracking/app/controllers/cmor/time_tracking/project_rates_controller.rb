@@ -9,6 +9,10 @@ module Cmor
 
       private
 
+      def load_collection_scope
+        super.joins(:project, :rate)
+      end
+
       def permitted_params
         params.require(:project_rate).permit(:project_id, :rate_id, :active_from, :active_to)
       end
