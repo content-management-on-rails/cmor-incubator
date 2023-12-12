@@ -22,7 +22,7 @@ module Cmor
             project_rate = Cmor::TimeTracking::ProjectRate.find_by(id: project_rate_id)
             item = Cmor::TimeTracking::Item.find(item_id)
             Cmor::TimeTracking::BillingRunService::Item.new(attributes.merge(item: item, project_rate: project_rate))
-          end
+          end.compact
         else
           value
         end
