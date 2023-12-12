@@ -17,8 +17,9 @@ module Cmor
         @items = case value
         when Hash
           value.collect do |item_id, attributes|
+            next unless ActiveRecord::Type::Boolean.new.cast(attributes.delete(:selected))
             project_rate_id = attributes.delete(:project_rate_id)
-            project_rate = Cmor::TimeTracking::ProjectRate.find(project_rate_id)
+            project_rate = Cmor::TimeTracking::ProjectRate.find_by(id: project_rate_id)
             item = Cmor::TimeTracking::Item.find(item_id)
             Cmor::TimeTracking::BillingRunService::Item.new(attributes.merge(item: item, project_rate: project_rate))
           end
@@ -30,6 +31,11 @@ module Cmor
       private
 
       def _perform
+        items.each do |item|
+          next if item.valid?
+          add_error_and_say(:"items[#{item.item.id}]", item.errors.full_messages.to_sentence)
+        end
+
         @result.invoices = []
         @result.billed_items = []
 
