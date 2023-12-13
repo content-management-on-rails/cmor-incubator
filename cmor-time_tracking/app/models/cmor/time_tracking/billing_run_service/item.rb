@@ -4,6 +4,7 @@ module Cmor
       extend ActiveModel::Model
       include ActiveModel::Attributes
       include ActiveModel::AttributeAssignment
+      include ActiveModel::Validations
 
       attribute :item
       attribute :selected, :boolean, default: false
@@ -12,6 +13,10 @@ module Cmor
       delegate :billable?, :description, :duration_in_hours, :end_at, :human, :id, :mark_as_billed!, :month, :owner, :start_at, :year, to: :item
       delegate :identifier, to: :issue, prefix: true
       delegate :rate, to: :project_rate
+
+      validates :item, presence: true
+      validates :selected, inclusion: {in: [true, false]}
+      validates :project_rate, presence: true
 
       def initialize(attrs = {})
         @attributes = self.class._default_attributes.deep_dup
@@ -27,7 +32,7 @@ module Cmor
       end
 
       def project_rate
-        @project_rate ||= project.current_default_rate
+        @project_rate ||= project&.current_default_rate
       end
 
       def project_rate_id

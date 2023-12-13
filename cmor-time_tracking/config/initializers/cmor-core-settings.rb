@@ -7,7 +7,7 @@ Rails.application.config.to_prepare do
       default: ENV.fetch("CMOR_TIME_TRACKING_EXTERNAL_ISSUE_JIRA_INTEGRATION_ENABLED", false),
       validations: {inclusion: {in: [true, false]}}
     )
-    
+
     config.register(
       namespace: :cmor_time_tracking,
       key: "external_issue.jira.base_url",
