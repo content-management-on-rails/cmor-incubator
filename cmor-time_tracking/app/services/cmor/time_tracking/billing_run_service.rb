@@ -83,16 +83,17 @@ module Cmor
       end
 
       def build_line_item(invoice, rate, issue, items)
-        Bgit::Invoicing::LineItem.new(
-          invoice: invoice,
-          invoiceable: issue,
-          name: issue.identifier,
-          description: issue.summary,
-          unit_name: rate.unit_name,
-          quantity: items.sum(&:duration_in_hours),
-          unit_net_amount_cents: rate.unit_net_amount_cents,
-          tax_rate_percentage: rate.unit_tax_rate_percentage
-        )
+        Bgit::Invoicing::LineItem.new.tap do |li|
+          li.invoice = invoice
+          li.invoiceable = issue
+          li.name = issue.identifier
+          li.description = issue.summary
+          li.unit_name = rate.unit_name
+          li.quantity = items.sum(&:duration_in_hours)
+          li.unit_net_amount_cents = rate.unit_net_amount_cents
+          li.tax_rate_percentage = rate.unit_tax_rate_percentage
+          li.billed_items.build(items.map { |item| { billable: item } })
+        end
       end
 
       def rate_ids
