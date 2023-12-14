@@ -34,6 +34,9 @@
                   %td= item_form.object.issue_identifier
                   %td= item_form.object.owner.human
                   %td.max
+                    %span
+                      = link_to(polymorphic_url([Cmor::TimeTracking::UpdateIssueFromExternalService], { update_issue_from_external_service: { issue_id: item_form.object.issue.id } }), class: "btn btn-xs btn-primary", method: :post) do
+                        %i.fas.fa-cloud-download-alt{ title: t(".download") }
                     %span{ title: (item_form.object.issue.summary || "-") }
                       = (item_form.object.issue.summary || "-").truncate(64)
                   %td= item_form.object.year
