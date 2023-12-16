@@ -10,7 +10,7 @@ module Cmor::TimeTracking
         includes(:rate).where(cmor_time_tracking_rates: {identifier: "default"}).first
       end
     end
-    has_one :current_default_rate, -> { active_now.includes(:rate).where(cmor_time_tracking_rates: {identifier: "default"}) }, class_name: "Cmor::TimeTracking::ProjectRate"
+    has_one :current_default_rate, -> { active_now.where(identifier: "default") }, class_name: "Cmor::TimeTracking::ProjectRate"
     validates :identifier, presence: true, uniqueness: true
 
     scope :owned_by_any, ->(*owners) { where(owner: owners.flatten) }
