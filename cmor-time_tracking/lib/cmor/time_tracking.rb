@@ -1,4 +1,5 @@
 require "aasm"
+require "bgit-invoicing"
 require "cmor-core-backend"
 require "cmor-core-settings"
 require "httparty"

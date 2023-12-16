@@ -83,6 +83,10 @@ sed -i '/end/i\  config.action_controller.action_on_unpermitted_parameters = :ra
 # Setup jira integration
 cp ../../.env ./
 
+# Setup Bgit::Invoicing
+rails generate bgit:invoicing:install
+rails bgit_invoicing:install:migrations
+
 # Setup Cmor::TimeTracking
 rails generate cmor:time_tracking:install
 rails cmor_time_tracking:install:migrations

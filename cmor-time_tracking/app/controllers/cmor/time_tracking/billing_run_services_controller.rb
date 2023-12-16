@@ -8,7 +8,7 @@ module Cmor
       private
 
       def permitted_params
-        params.require(:billing_run_service).permit(items: [:selected, :project_rate_id])
+        params.require(:billing_run_service).permit(:bill_monthly, items: [:selected, :project_rate_id])
       end
     end
   end

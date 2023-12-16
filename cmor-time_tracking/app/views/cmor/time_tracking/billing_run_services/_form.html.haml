@@ -2,6 +2,12 @@
 - @items = Cmor::TimeTracking::Item.billable.all.to_a.map { |item| Cmor::TimeTracking::BillingRunService::Item.new(item: item) }
 - @service.items = @items
 
+.card.mb-4
+  .card-header
+    = Cmor::TimeTracking::BillingRunService.human_attribute_name(:settings)
+  .card-body.pb-0
+    = form.input :bill_monthly, as: :boolean
+
 %div{ id: component_id }
   - @service.items.group_by(&:project).each do |project, items|
     .card.mb-4

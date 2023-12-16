@@ -17,6 +17,7 @@ Gem::Specification.new do |spec|
   spec.files = Dir["{app,config,db,lib,spec/factories,spec/files}/**/*", "MIT-LICENSE", "Rakefile", "README.md"]
 
   spec.add_dependency "aasm"
+  spec.add_dependency "bgit-invoicing"
   spec.add_dependency "cmor-core-settings"
   spec.add_dependency "httparty"
   spec.add_dependency "money-rails"

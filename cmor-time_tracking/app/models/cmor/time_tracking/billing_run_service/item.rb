@@ -16,7 +16,9 @@ module Cmor
 
       validates :item, presence: true
       validates :selected, inclusion: {in: [true, false]}
+      validates :project, presence: true
       validates :project_rate, presence: true
+      validates :issue_identifier, presence: true
 
       def initialize(attrs = {})
         @attributes = self.class._default_attributes.deep_dup
@@ -29,6 +31,10 @@ module Cmor
 
       def issue
         item&.issue
+      end
+
+      def issue_identifier
+        issue&.identifier
       end
 
       def project_rate

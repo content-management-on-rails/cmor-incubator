@@ -1,5 +1,5 @@
 = table.id sort: true
-= table.association :owner, label_method: :human, link_to: ->(r) { (Object.const_defined?("Bgit") && r.owner.is_a?(Bgit::Organisations::Team)) ? bgit_organisations.url_for(r.owner) : nil }, sort: { column_name: :owner_id }
+= table.association :owner, label_method: :human, link_to: ->(r) { (Object.const_defined?("Bgit::Organisations") && r.owner.is_a?(Bgit::Organisations::Team)) ? bgit_organisations.url_for(r.owner) : nil }, sort: { column_name: :owner_id }
 = table.column :identifier, sort: true
 = table.column :name, sort: true
 = table.column :issues_count
