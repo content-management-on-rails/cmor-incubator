@@ -3,3 +3,5 @@
     = form.input :project_id_eq, as: :select, collection: Cmor::TimeTracking::Project.all, label_method: :human
   .col-12.col-md
     = form.input :rate_id_eq, as: :select, collection: Cmor::TimeTracking::Rate.all, label_method: :human
+  .col-12.col-md
+    = form.input :identifier_eq

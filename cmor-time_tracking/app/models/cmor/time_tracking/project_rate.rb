@@ -5,11 +5,21 @@ module Cmor::TimeTracking
 
     validates :active_from, presence: true
     validates :active_to, presence: true
+    validates :identifier, presence: true
+    validates :identifier, uniqueness: {scope: [:project_id]}
 
     delegate :identifier, to: :rate, prefix: true
 
+    before_validation :set_identifier
+
     def human
       rate.human
+    end
+
+    private
+
+    def set_identifier
+      self.identifier ||= rate&.identifier
     end
 
     module ActiveConcern

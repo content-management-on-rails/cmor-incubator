@@ -1,6 +1,7 @@
 = table.id sort: true
 = table.association :project, label_method: :human, sort: { column_name: "cmor_time_tracking_projects.name" }, link_to: ->(r) { url_for(r.project) }
 = table.association :rate, label_method: :human, sort: { column_name: "cmor_time_tracking_rates.identifier" }, link_to: ->(r) { url_for(r.rate) }
+= table.column :identifier, sort: true
 = table.boolean :active do |r|
   - capture_haml do
     %span.badge{ class: "badge-#{r.active ? 'success' : 'danger'}" }= t("rao.component.table.body_cells.boolean.#{r.active.to_s}")

@@ -34,6 +34,7 @@ RSpec.describe "/de/backend/zeiterfassung/project_rates", type: :feature do
           select rate.human, from: "project_rate[rate_id]"
           fill_in "project_rate[active_from]", with: 1.day.ago.strftime("%Y-%m-%d %H:%M")
           fill_in "project_rate[active_to]", with: 1.day.from_now.strftime("%Y-%m-%d %H:%M")
+          fill_in "project_rate[identifier]", with: "default"
         }
         .increasing { resource_class.count }.by(1)
     }

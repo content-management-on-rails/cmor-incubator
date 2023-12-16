@@ -14,7 +14,7 @@ module Cmor
       end
 
       def permitted_params
-        params.require(:project_rate).permit(:project_id, :rate_id, :active_from, :active_to)
+        params.require(:project_rate).permit(:project_id, :rate_id, :active_from, :active_to, :identifier)
       end
     end
   end
