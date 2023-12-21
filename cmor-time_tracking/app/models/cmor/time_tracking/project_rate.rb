@@ -6,7 +6,7 @@ module Cmor::TimeTracking
     validates :active_from, presence: true
     validates :active_to, presence: true
     validates :identifier, presence: true
-    validates :identifier, uniqueness: {scope: [:project_id]}
+    validates :identifier, uniqueness: {scope: [:project_id]}, if: -> { active }
 
     delegate :identifier, to: :rate, prefix: true
 
@@ -37,7 +37,7 @@ module Cmor::TimeTracking
       end
 
       def active_at(point_in_time)
-        active_from <= point_in_time && active_to >= point_in_time
+        active_from&.<=(point_in_time) && active_to&.>=(point_in_time)
       end
 
       private
