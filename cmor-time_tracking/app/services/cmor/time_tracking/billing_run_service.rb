@@ -21,12 +21,13 @@ module Cmor
             project_rate_id = attributes.delete(:project_rate_id)
             project_rate = Cmor::TimeTracking::ProjectRate.find_by(id: project_rate_id)
             item = Cmor::TimeTracking::Item.find(item_id)
-            Cmor::TimeTracking::BillingRunService::Item.new(attributes.merge(item: item, project_rate: project_rate))
+            invoice_owner = GlobalID::Locator.locate(attributes.delete(:invoice_owner_gid))
+            Cmor::TimeTracking::BillingRunService::Item.new(attributes.merge(item: item, project_rate: project_rate, invoice_owner: invoice_owner))
           end.compact
         when Array
           value.collect do |item|
             if item.is_a?(Cmor::TimeTracking::Item)
-              Cmor::TimeTracking::BillingRunService::Item.new(item: item, project_rate: item.project&.current_default_rate)
+              Cmor::TimeTracking::BillingRunService::Item.new(item: item, project_rate: item.project&.current_default_rate, invoice_owner: item.issue.project&.owner)
             else
               item
             end
