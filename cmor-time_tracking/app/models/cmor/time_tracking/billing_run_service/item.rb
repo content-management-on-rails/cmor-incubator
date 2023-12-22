@@ -37,7 +37,7 @@ module Cmor
       end
 
       def project_rate_id
-        @project_rate&.id
+        project_rate.id
       end
 
       def invoice_owner_gid

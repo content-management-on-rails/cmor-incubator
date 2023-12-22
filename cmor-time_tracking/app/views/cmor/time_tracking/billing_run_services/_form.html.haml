@@ -1,7 +1,7 @@
 - component_id = "component-#{SecureRandom.hex(32)}"
-- @items = Cmor::TimeTracking::Item.billable.all.to_a.map { |item| Cmor::TimeTracking::BillingRunService::Item.new(item: item) }
-- @service.items = @items
-
+-# @items = Cmor::TimeTracking::Item.billable.all.to_a.map { |item| Cmor::TimeTracking::BillingRunService::Item.new(item: item) }
+-# @service.items = @items
+- @service.items = Cmor::TimeTracking::Item.billable.all.to_a
 .card.mb-4
   .card-header
     = Cmor::TimeTracking::BillingRunService.human_attribute_name(:settings)
