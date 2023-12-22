@@ -1,2 +1,9 @@
-- collection = instance_exec(&Cmor::TimeTracking::Configuration.project_owner_autocomplete_classes).keys
-= form.input :owner_id_eq, as: :grouped_select, group_method: :all, group_label_method: ->(klass) { klass.model_name.human },  collection: collection, label_method: :human, value_method: :id, include_blank: true
+= form.input(
+  :owner_id_eq,
+  as: :grouped_select,
+  group_method: :all,
+  group_label_method: ->(klass) { klass.model_name.human },
+  collection: instance_exec(&Cmor::TimeTracking::Configuration.project_owner_classes).keys,
+  label_method: :human,
+  value_method: :id,
+  include_blank: true)

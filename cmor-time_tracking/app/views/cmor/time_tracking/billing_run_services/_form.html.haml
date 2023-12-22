@@ -29,6 +29,7 @@
               %th= Cmor::TimeTracking::Item.human_attribute_name(:end_at)
               %th= Cmor::TimeTracking::Item.human_attribute_name(:duration_in_hours)
               %th= Cmor::TimeTracking::Item.human_attribute_name(:rate)
+              %th= Cmor::TimeTracking::Item.human_attribute_name(:invoice_owner)
               %th= Cmor::TimeTracking::Item.human_attribute_name(:description)
           %tbody
             / sort items by issue first and then by start_at
@@ -51,6 +52,16 @@
                   %td= item_form.object.end_at
                   %td.text-right= item_form.object.duration_in_hours
                   %td= item_form.input :project_rate_id, as: :select, collection: project.current_rates, label_method: :human, input_html: { style: "width: fit-content;" }, label: false
+                  %td
+                    = item_form.input(:invoice_owner_gid,
+                      as: :grouped_select,
+                      collection: [project.owner.class.where(id: project.owner.id)] + instance_exec(&Cmor::TimeTracking::Configuration.project_owner_classes).keys,
+                      group_method: :all,
+                      group_label_method: ->(m) { m.model_name.human(count: :other) },
+                      value_method: :to_global_id,
+                      label_method: ->(r) { administrador_helper(self).label_for(r) },
+                      input_html: { style: "width: fit-content;" },
+                      label: false)
                   %td= item_form.object.description
 
 :javascript

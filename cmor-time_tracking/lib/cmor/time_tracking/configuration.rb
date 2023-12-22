@@ -40,7 +40,7 @@ module Cmor
       define_option :item_owner_class, default: -> { User }
       define_option :item_owner_factory_name, default: -> { :user }
       define_option :project_owner_factory_name, default: -> { :user }
-      define_option :project_owner_autocomplete_classes, default: -> {
+      define_option :project_owner_classes, default: -> {
         {
           User => main_app.url_for([:autocomplete, User])
         }

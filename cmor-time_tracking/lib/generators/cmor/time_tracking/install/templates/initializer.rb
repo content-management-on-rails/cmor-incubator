@@ -75,15 +75,15 @@ Cmor::TimeTracking.configure do |config|
   #
   config.project_owner_factory_name = -> { :<%= @project_owner_factory_name %> }
 
-  # Set the project owner autocomplete options.
+  # Set the project and invoice owner classes and options.
   #
-  # Default: config.project_owner_autocomplete_classes = lambda do
+  # Default: config.project_owner_classes = lambda do
   #            {
   #              User => main_app.url_for([:autocomplete, User])
   #            }
   #          end
   #
-  config.project_owner_autocomplete_classes = lambda do
+  config.project_owner_classes = lambda do
     {
       User => main_app.url_for([:autocomplete, User])
     }

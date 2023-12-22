@@ -56,12 +56,12 @@ module Cmor
       end
 
       def perform_billing
-        # iterate over projects
-        projects.each do |project|
+        # iterate over invoice owners
+        invoice_owners.each do |invoice_owner|
           # build invoice for project
-          invoice = build_invoice(project)
-          # select billable items for project
-          billable_items = items.select { |item| item.project == project && item.billable? }
+          invoice = build_invoice(invoice_owner)
+          # select billable items for invoice_owner
+          billable_items = items.select { |item| item.invoice_owner == invoice_owner && item.billable? }
           # group billable_items by issue
           billable_items_by_issue = billable_items.group_by(&:issue)
 
@@ -91,14 +91,14 @@ module Cmor
           # iterate over months
           months.each do |month|
             say "Billing month #{month.to_date}" do
-              # iterate over projects
-              projects.each do |project|
-                say "Billing project #{project.human}" do
-                  binding.pry if project.nil?
+              # iterate over invoice owners
+              invoice_owners.each do |invoice_owner|
+                say "Billing invoice owner #{invoice_owner.human}" do
+                  binding.pry if invoice_owner.nil?
                   # build invoice for month and project
-                  invoice = build_invoice(project, month)
+                  invoice = build_invoice(invoice_owner, month)
                   # select billable items for year, month and project and group them by issue
-                  billable_items_by_issue = items.select { |item| item.project == project && item.start_at.beginning_of_month == month.beginning_of_month && item.billable? }.group_by(&:issue)
+                  billable_items_by_issue = items.select { |item| item.invoice_owner == invoice_owner && item.start_at.beginning_of_month == month.beginning_of_month && item.billable? }.group_by(&:issue)
 
                   # skip if no billable items are present
                   if billable_items_by_issue.blank?
@@ -132,9 +132,9 @@ module Cmor
         end
       end
 
-      def build_invoice(project, month = nil)
+      def build_invoice(invoice_owner, month = nil)
         Bgit::Invoicing::Invoice.new(
-          owner: project.owner,
+          owner: invoice_owner,
           shipping_date: month&.beginning_of_month,
           shipping_end_date: month&.end_of_month
         )
@@ -172,6 +172,10 @@ module Cmor
 
       def projects
         @projects ||= items.map(&:project).uniq
+      end
+
+      def invoice_owners
+        @invoice_owners ||= items.map(&:invoice_owner).uniq
       end
     end
   end
