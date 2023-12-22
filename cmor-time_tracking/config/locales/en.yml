@@ -16,6 +16,7 @@ en:
     attributes:
       cmor/time_tracking/billing_run_service:
         bill_monthly: "Bill monthly"
+        settings: Settings
       cmor/time_tracking/items_report_service/result:
         billable_hours: Billable hours
         billed_hours: Billed hours
@@ -80,11 +81,13 @@ en:
         duration_in_hours: Duration in hours
         end_at: End at
         external_issue_identifier: External issue identifier
+        invoice_owner: Invoice owner
         issue_id: Issue
         issue: Issue
         month: Month
         owner: Owner
         owner_id: Owner
+        project_rate_id: Project rate
         start_at: Start at
         year: Year
       cmor/time_tracking/project:

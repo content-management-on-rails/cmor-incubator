@@ -25,12 +25,13 @@
               %th= Cmor::TimeTracking::Issue.human_attribute_name(:description)
               %th= Cmor::TimeTracking::Item.human_attribute_name(:year)
               %th= Cmor::TimeTracking::Item.human_attribute_name(:month)
+              %th= Cmor::TimeTracking::Item.human_attribute_name(:duration_in_hours)
               %th= Cmor::TimeTracking::Item.human_attribute_name(:start_at)
               %th= Cmor::TimeTracking::Item.human_attribute_name(:end_at)
-              %th= Cmor::TimeTracking::Item.human_attribute_name(:duration_in_hours)
-              %th= Cmor::TimeTracking::Item.human_attribute_name(:rate)
+              %th= Cmor::TimeTracking::Item.human_attribute_name(:project_rate_id)
               %th= Cmor::TimeTracking::Item.human_attribute_name(:invoice_owner)
-              %th= Cmor::TimeTracking::Item.human_attribute_name(:description)
+              %th
+                %i.fas.fa-info-circle
           %tbody
             / sort items by issue first and then by start_at
             - items.sort_by { |item| [item.issue.human, item.start_at] }.each do |item|
@@ -45,13 +46,13 @@
                       = link_to(polymorphic_url([Cmor::TimeTracking::UpdateIssueFromExternalService], { update_issue_from_external_service: { issue_id: item_form.object.issue.id } }), class: "btn btn-xs btn-primary", method: :post) do
                         %i.fas.fa-cloud-download-alt{ title: t(".download") }
                     %span{ title: (item_form.object.issue.summary || "-") }
-                      = (item_form.object.issue.summary || "-").truncate(64)
+                      = (item_form.object.issue.summary || "-").truncate(48)
                   %td= item_form.object.year
                   %td= item_form.object.month
+                  %td.text-right= item_form.object.duration_in_hours
                   %td= item_form.object.start_at
                   %td= item_form.object.end_at
-                  %td.text-right= item_form.object.duration_in_hours
-                  %td= item_form.input :project_rate_id, as: :select, collection: project.current_rates, label_method: :human, input_html: { style: "width: fit-content;" }, label: false
+                  %td= item_form.input :project_rate_id, as: :select, collection: project.current_rates, label_method: :human, input_html: { class: "form-control-xs", style: "width: fit-content;" }, label: false
                   %td
                     = item_form.input(:invoice_owner_gid,
                       as: :grouped_select,
@@ -60,9 +61,11 @@
                       group_label_method: ->(m) { m.model_name.human(count: :other) },
                       value_method: :to_global_id,
                       label_method: ->(r) { administrador_helper(self).label_for(r) },
-                      input_html: { style: "width: fit-content;" },
+                      input_html: { class: "form-control-xs", style: "width: fit-content;" },
                       label: false)
-                  %td= item_form.object.description
+                  %td
+                    - if item_form.object.description.present?
+                      %i.fas.fa-info-circle{ title: (item_form.object.description || "-") }
 
 :javascript
   $(document).ready(function() {

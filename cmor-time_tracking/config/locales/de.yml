@@ -16,6 +16,7 @@ de:
     attributes:
       cmor/time_tracking/billing_run_service:
         bill_monthly: "Monatlich abrechnen"
+        settings: Einstellungen
       cmor/time_tracking/items_report_service/result:
         billable_hours: Abrechenbare Stunden
         billed_hours: Abgerechnete Stunden
@@ -80,11 +81,13 @@ de:
         duration_in_hours: Dauer in Stunden
         end_at: Ende
         external_issue_identifier: Externe Ticketnummer
+        invoice_owner: Rechnungsempfänger
         issue_id: Ticket
         issue: Ticket
         month: Monat
         owner: Besitzer
         owner_id: Besitzer
+        project_rate_id: Projekt-Stundensatz
         start_at: Beginn
         year: Jahr
       cmor/time_tracking/project:
