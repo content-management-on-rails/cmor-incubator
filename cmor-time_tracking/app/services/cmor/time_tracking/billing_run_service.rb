@@ -9,6 +9,10 @@ module Cmor
 
       validates :items, presence: true
 
+      def bill_monthly=(value)
+        @bill_monthly = ActiveRecord::Type::Boolean.new.cast(value)
+      end
+
       def items
         @items ||= Cmor::TimeTracking::Item.where(id: item_ids).map { |item| Cmor::TimeTracking::BillingRunService::Item.new(item: item) }
       end
