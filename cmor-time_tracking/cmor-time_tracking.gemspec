@@ -21,6 +21,7 @@ Gem::Specification.new do |spec|
   spec.add_dependency "cmor-core-settings"
   spec.add_dependency "httparty"
   spec.add_dependency "money-rails"
+  spec.add_dependency "pundit"
   spec.add_dependency "rao-active_collection"
   spec.add_dependency "rao-view_helper"
   spec.add_dependency "rao-service"

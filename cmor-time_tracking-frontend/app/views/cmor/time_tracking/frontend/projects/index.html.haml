@@ -1,0 +1,13 @@
+%h1
+  = resource_class.model_name.human(count: :other)
+  %span.badge.bg-primary
+    = @collection.count
+
+.row
+  .col-12
+    = collection_table(collection: @collection) do |table|
+      = table.id
+      = table.field :identifier, sort: true
+      = table.field :name, sort: true
+      = table.field :issues_count
+      = render partial: "cmor/time_tracking/frontend/collection_table/default_actions", locals: { table: table }

@@ -1,0 +1,16 @@
+= table.column :actions, title: "" do |resource|
+  - capture_haml do
+    - if available_rest_actions.empty?
+      &nbsp;
+    - else
+      - if available_rest_actions.include?(:show)
+        = link_to(resource, class: "btn btn-primary text-white", target: "_top") do
+          = t(".show")
+
+      - if available_rest_actions.include?(:edit)
+        = link_to(resource, class: "btn btn-warning text-white", target: "_top") do
+          = t(".edit")
+
+      - if available_rest_actions.include?(:destroy)
+        = link_to(resource, class: "btn btn-danger text-white", target: "_top", method: :delete, data: { confirm: t(".confirm") }) do
+          = t(".destroy")

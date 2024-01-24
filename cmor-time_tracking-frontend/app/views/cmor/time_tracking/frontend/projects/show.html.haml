@@ -1,0 +1,23 @@
+.row
+  .col-12
+    %h1= @resource.human
+
+.row.mb-4
+  .col-12
+    = time_tracking_helper(self).render_project_report(resource: @resource, visibility: :customer)
+
+
+.row.mb-4
+  .col-12
+    = collection_table(collection: @resource.issues) do |table|
+      = table.field :identifier
+      = table.field :summary
+      = table.field :external_state do |r|
+        - capture_haml do
+          %span.badge.badge-primary= r.external_state
+
+.row
+  .col-12
+    = link_to({ action: :index }, class: 'btn btn-secondary') do
+      %i.fas.fa-arrow-left
+      = t(".back")

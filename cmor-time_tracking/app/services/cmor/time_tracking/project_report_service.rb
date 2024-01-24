@@ -9,23 +9,44 @@ module Cmor
           :confirmed_hours,
           :billable_hours,
           :not_billable_hours,
-          :billed_hours
+          :billed_hours,
+          :visibility,
+          :available_hours_attributes
       end
 
       attr_accessor :project
+      attr_writer :visibility
 
       validates :project, presence: true
+      validates :visibility, inclusion: { in: %w(all customer).map(&:inquiry) }, allow_blank: true
 
       private
 
+      def visibility
+        @visibility.to_s.inquiry
+      end
+
+      def available_hours_attributes
+        @available_hour_attributes ||= if visibility.all?
+          %w(draft_hours confirmed_hours billable_hours not_billable_hours billed_hours)
+        else
+          %w(billable_hours billed_hours)
+        end
+      end
+
       def _perform
-        @result.issues_count = issues_count
-        @result.items_count = items_count
-        @result.hours = hours
-        @result.draft_hours = draft_hours
-        @result.confirmed_hours = confirmed_hours
+        @result.visibility = visibility
+        @result.available_hours_attributes = available_hours_attributes
+
+        if visibility.all?
+          @result.items_count = items_count
+          @result.draft_hours = draft_hours
+          @result.confirmed_hours = confirmed_hours
+          @result.not_billable_hours = not_billable_hours
+          @result.hours = hours
+          @result.issues_count = issues_count
+        end
         @result.billable_hours = billable_hours
-        @result.not_billable_hours = not_billable_hours
         @result.billed_hours = billed_hours
       end
 

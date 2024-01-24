@@ -1,0 +1,41 @@
+source "https://rubygems.org"
+git_source(:github) { |repo| "https://github.com/#{repo}.git" }
+
+gemspec
+
+gem "cmor-time_tracking", path: "../cmor-time_tracking"
+
+git "https://github.com/beegoodit/bgit-ruby" do
+  gem "bgit-invoicing" # , path: "~/projects/gems/bgit-ruby/bgit-invoicing"
+end
+
+git "https://github.com/beegoodit/lexoffice-ruby" do
+  gem "lexoffice_client" # , path: "~/projects/gems/lexoffice-ruby/lexoffice_client"
+end
+
+gem "authlogic", git: "https://github.com/lsylvester/authlogic", branch: "rails-71"
+
+git "https://github.com/content-management-on-rails/cmor" do
+  gem 'cmor'
+  gem 'cmor-core'
+  gem 'cmor-core-backend'
+  gem "cmor-core-settings" # , path: "~/projects/gems/cmor/cmor-core-settings"
+end
+gem "rails", "~> 7.0"
+gem "rails-dummy", github: "robotex82/rails-dummy", branch: "feature/ruby-3-2-compatibility"
+
+git "https://github.com/robotex82/json_seeds-rails" do
+  gem "json_seeds-rails" # , path: "~/projects/gems/json_seeds-rails"
+end
+
+git "https://github.com/rails-add-ons/rao", ref: "4a8f4832aa1cb3cf79815790112b8ea6dfc599b6" do
+  gem "rao-active_collection" # , path: "~/projects/gems/rao/rao-active_collection"
+  gem "rao-service" # , path: "~/projects/gems/rao/rao-service"
+  gem "rao-component"
+end
+
+git "https://github.com/robotex82/simple_form-polymorphic_associations" do
+  gem "simple_form-polymorphic_associations" # , path: "~/projects/gems/simple_form-polymorphic_associations"
+end
+
+gem "psych", "< 4.0"

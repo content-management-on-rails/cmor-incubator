@@ -1,0 +1,4 @@
+en:
+  routes:
+    cmor_time_tracking_frontend_engine: "time-tracking"
+    projects: "projects"
