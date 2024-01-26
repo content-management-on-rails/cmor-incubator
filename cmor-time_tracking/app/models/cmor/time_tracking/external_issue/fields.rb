@@ -58,6 +58,7 @@ module Cmor
         :customfield_10120,
         :customfield_10121,
         :customfield_10130,
+        :customfield_10131,
         :customfield_10137,
         :customfield_10138,
         :description,
