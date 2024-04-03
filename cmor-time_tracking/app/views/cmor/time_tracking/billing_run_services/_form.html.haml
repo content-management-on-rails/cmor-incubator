@@ -49,7 +49,8 @@
                       = (item_form.object.issue.summary || "-").truncate(48)
                   %td= item_form.object.year
                   %td= item_form.object.month
-                  %td.text-right= item_form.object.duration_in_hours
+                  %td.text-right
+                    = number_to_human(item_form.object.duration_in_hours, strip_insignificant_zeros: false, significant: false, precision: 2)
                   %td= item_form.object.start_at
                   %td= item_form.object.end_at
                   %td= item_form.input :project_rate_id, as: :select, collection: project.current_rates, label_method: :human, input_html: { class: "form-control-xs", style: "width: fit-content;" }, label: false
@@ -66,6 +67,13 @@
                   %td
                     - if item_form.object.description.present?
                       %i.fas.fa-info-circle{ title: (item_form.object.description || "-") }
+
+          %tfoot
+            %tr
+              %td{ colspan: 6 }
+              %td.text-right
+                %b= number_to_human(items.sum(&:duration_in_hours), strip_insignificant_zeros: false, significant: false, precision: 2)
+              %td{ colspan: 5 }
 
 :javascript
   $(document).ready(function() {
