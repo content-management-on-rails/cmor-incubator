@@ -4,6 +4,7 @@ module Cmor
       include Rao::ResourcesController::SortingConcern
       include Rao::ResourcesController::AasmConcern
       include Rao::ResourcesController::BatchActionsConcern
+      include SimpleFormPolymorphicAssociations::Controller::AutocompleteConcern
 
       view_helper Cmor::TimeTracking::ApplicationViewHelper, as: :time_tracking_helper
 

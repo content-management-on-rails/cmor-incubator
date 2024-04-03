@@ -6,6 +6,7 @@ Cmor::TimeTracking::Engine.routes.draw do
   resources :issues
 
   resources :items do
+    get :autocomplete, on: :collection
     post "trigger_event/:machine_name/:event_name", on: :member, action: "trigger_event", as: :trigger_event
     post :destroy_many, on: :collection
   end
