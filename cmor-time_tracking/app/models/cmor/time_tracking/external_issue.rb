@@ -34,7 +34,7 @@ module Cmor
 
       def self.autocomplete(term)
         return none if term.blank?
-        all.where(["summary LIKE ?", term.downcase])
+        all.where(["summary LIKE ?", term])
       end
 
       class << self
