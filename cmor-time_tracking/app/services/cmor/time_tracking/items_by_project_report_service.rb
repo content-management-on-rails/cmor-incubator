@@ -22,7 +22,7 @@ module Cmor
 
       def _perform
         @result.items = items
-        @result.projects = items.map(&:project).uniq.sort
+        @result.projects = items.map(&:project).uniq.compact.sort
         @result.months = items.map { |item| item.start_at.beginning_of_month }.uniq.sort
       end
     end
