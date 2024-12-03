@@ -86,6 +86,7 @@ module Cmor
         :labels,
         :last_viewed,
         :parent,
+        :priority,
         :progress,
         :project,
         :reporter,
