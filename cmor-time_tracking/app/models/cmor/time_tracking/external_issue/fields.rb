@@ -104,7 +104,8 @@ module Cmor
         :versions,
         :votes,
         :watches,
-        :workratio
+        :workratio,
+        :status_category
 
       def issuetype=(value)
         value["url"] = value.delete("self")
