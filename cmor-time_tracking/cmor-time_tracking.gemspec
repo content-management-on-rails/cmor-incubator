@@ -25,6 +25,7 @@ Gem::Specification.new do |spec|
   spec.add_dependency "rao-view_helper"
   spec.add_dependency "rao-service"
   spec.add_dependency "simple_form-polymorphic_associations", ">= 0.0.2"
+  spec.add_dependency "validates_overlap"
 
   spec.add_development_dependency "json_seeds-rails"
   spec.add_development_dependency "dotenv-rails"

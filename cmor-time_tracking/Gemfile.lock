@@ -149,6 +149,7 @@ PATH
       rao-service
       rao-view_helper
       simple_form-polymorphic_associations (>= 0.0.2)
+      validates_overlap
 
 GEM
   remote: https://rubygems.org/
@@ -648,6 +649,8 @@ GEM
     tzinfo (2.0.6)
       concurrent-ruby (~> 1.0)
     unicode-display_width (2.5.0)
+    validates_overlap (1.0.0)
+      rails (>= 6.0.0)
     vcr (6.2.0)
     webmock (3.19.1)
       addressable (>= 2.8.0)

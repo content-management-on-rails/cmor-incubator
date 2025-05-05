@@ -9,6 +9,7 @@ require "rao-service"
 require "rao-view_helper"
 require "rao/service/job"
 require "simple_form-polymorphic_associations"
+require "validates_overlap"
 
 require "cmor/time_tracking/version"
 require "cmor/time_tracking/configuration"

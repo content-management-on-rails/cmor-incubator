@@ -9,6 +9,51 @@ module Cmor::TimeTracking
 
     describe "validations" do
       it { expect(subject).to validate_presence_of(:start_at) }
+
+      describe "overlapping" do
+        describe "with start_at and end_at" do
+          describe "with overlapping item for the same owner" do
+            let(:existing_item) { create(:cmor_time_tracking_item, start_at: 1.day.ago, end_at: 1.day.ago + 1.hour) }
+
+            subject { build(:cmor_time_tracking_item, start_at: existing_item.start_at, end_at: existing_item.end_at, owner: existing_item.owner) }
+
+            before(:each) do
+              existing_item
+              subject.valid?
+            end
+
+            it { expect(subject).to be_invalid }
+            it { expect(subject.errors[:start_at]).to include("überschneidet sich mit einem anderen Eintrag") }
+          end
+
+          describe "with overlapping item for a different owner" do
+            let(:existing_item) { create(:cmor_time_tracking_item, start_at: 1.day.ago, end_at: 1.day.ago + 1.hour) }
+
+            subject { build(:cmor_time_tracking_item, start_at: existing_item.start_at, end_at: existing_item.end_at) }
+
+            before(:each) do
+              existing_item
+              subject.valid?
+            end
+
+            it { expect(subject).to be_valid }
+          end
+
+          describe "with an adjacent item" do
+            let(:existing_item) { create(:cmor_time_tracking_item, start_at: 1.day.ago, end_at: 1.day.ago + 1.hour) }
+
+            subject { build(:cmor_time_tracking_item, start_at: existing_item.end_at, end_at: existing_item.end_at + 1.hour, owner: existing_item.owner) }
+
+            before(:each) do
+              existing_item
+              subject.valid?
+            end
+
+            it { expect(subject.start_at).to eq(existing_item.end_at) }
+            it { expect(subject).to be_valid }
+          end
+        end
+      end
     end
 
     describe "billing state" do

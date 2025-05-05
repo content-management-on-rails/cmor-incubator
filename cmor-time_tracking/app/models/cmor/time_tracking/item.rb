@@ -8,11 +8,21 @@ module Cmor::TimeTracking
     has_one :project, through: :issue
 
     validates :start_at, presence: true
+    validates :start_at, :end_at,
+      overlap: {
+        scope: [:owner_id],
+        exclude_edges: ["start_at", "end_at"],
+        load_overlapped: true
+      }
 
     autocomplete scope: ->(matcher) { where("lower(external_issue_identifier) LIKE :term", term: "%#{matcher.downcase}%") }, id_method: :id, text_method: :human
 
     scope :in_month, ->(date) { where(start_at: date.beginning_of_month..date.end_of_month) }
     scope :in_this_month, -> { in_month(Time.zone.now) }
+
+    def overlapped_records
+      @overlapped_records || []
+    end
 
     def external_project_identifier
       external_issue_identifier&.split("-")&.first

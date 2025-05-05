@@ -1,0 +1,4 @@
+de:
+  errors:
+    messages:
+      overlap: "überschneidet sich mit einem anderen Eintrag"
