@@ -7,6 +7,7 @@ module Cmor
           :hours,
           :draft_hours,
           :confirmed_hours,
+          :flatrate_hours,
           :billable_hours,
           :not_billable_hours,
           :billed_hours
@@ -24,6 +25,7 @@ module Cmor
         @result.hours = hours
         @result.draft_hours = draft_hours
         @result.confirmed_hours = confirmed_hours
+        @result.flatrate_hours = @project.flatrate_hours
         @result.billable_hours = billable_hours
         @result.not_billable_hours = not_billable_hours
         @result.billed_hours = billed_hours
@@ -51,6 +53,10 @@ module Cmor
 
       def billable_hours
         @project.billable_hours
+      end
+
+      def flatrate_hours
+        @project.flatrate_hours
       end
 
       def not_billable_hours

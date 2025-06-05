@@ -8,7 +8,8 @@ module Cmor
           :confirmed_hours,
           :billable_hours,
           :not_billable_hours,
-          :billed_hours
+          :billed_hours,
+          :flatrate_hours
       end
 
       attr_accessor :items
@@ -25,6 +26,7 @@ module Cmor
         @result.billable_hours = billable_hours
         @result.not_billable_hours = not_billable_hours
         @result.billed_hours = billed_hours
+        @result.flatrate_hours = flatrate_hours
       end
 
       def count
@@ -53,6 +55,10 @@ module Cmor
 
       def billed_hours
         (items.where(billing_state: :billed).sum(:duration).to_f / 60 / 60).round(3)
+      end
+
+      def flatrate_hours
+        (items.where(billing_state: :flatrate).sum(:duration).to_f / 60 / 60).round(3)
       end
     end
   end

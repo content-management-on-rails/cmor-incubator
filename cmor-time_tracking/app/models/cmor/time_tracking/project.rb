@@ -43,6 +43,10 @@ module Cmor::TimeTracking
       (items.where(billing_state: :billable).sum(:duration).to_f / 60 / 60).round(3)
     end
 
+    def flatrate_hours
+      (items.where(billing_state: :flatrate).sum(:duration).to_f / 60 / 60).round(3)
+    end
+
     def billed_hours
       (items.where(billing_state: :billed).sum(:duration).to_f / 60 / 60).round(3)
     end

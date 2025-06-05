@@ -24,6 +24,7 @@
             = table.row :billable_hours
             = table.row :not_billable_hours
             = table.row :billed_hours
+            = table.row :flatrate_hours
 
 :javascript
   $(document).ready(function() {
@@ -31,14 +32,15 @@
     var myChart = new Chart(ctx, {
       type: 'pie',
       data: {
-        labels: #{ %w(draft_hours confirmed_hours billable_hours not_billable_hours billed_hours).map { |key| result.class.human_attribute_name(key) }.to_json },
+        labels: #{ %w(draft_hours confirmed_hours billable_hours not_billable_hours billed_hours flatrate_hours).map { |key| result.class.human_attribute_name(key) }.to_json },
         datasets: [{
           data: [
             #{result.draft_hours},
             #{result.confirmed_hours},
             #{result.billable_hours},
             #{result.not_billable_hours},
-            #{result.billed_hours}
+            #{result.billed_hours},
+            #{result.flatrate_hours}
           ]
         }]
       },

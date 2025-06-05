@@ -18,6 +18,7 @@ module Cmor::TimeTracking
       it { expect(subject).to respond_to(:confirmed?) }
       it { expect(subject).to respond_to(:billable?) }
       it { expect(subject).to respond_to(:billed?) }
+      it { expect(subject).to respond_to(:flatrate?) }
     end
 
     describe "dependencies concern" do

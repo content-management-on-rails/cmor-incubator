@@ -43,6 +43,10 @@ module Cmor::TimeTracking
       # items are billed by the accounting department. Changes to billed items are not allowed.
       state :billed
 
+      # This state should for work that is included in service agreements. Items are not
+      # concidered for billing/to be added to invoices.
+      state :flatrate
+
       event :mark_as_confirmed do
         transitions from: :draft, to: :confirmed
       end
@@ -52,6 +56,13 @@ module Cmor::TimeTracking
       # This should be called by the owner of the item.
       event :mark_as_billable do
         transitions from: :confirmed, to: :billable
+      end
+
+      # marks the item as flatrate so it is not billed
+      #
+      # This should be called by the owner of the item.
+      event :mark_as_flatrate do
+        transitions from: :confirmed, to: :flatrate
       end
 
       # marks the item as not billable
@@ -72,7 +83,7 @@ module Cmor::TimeTracking
       #
       # This should be called by the owner of the item or the accounting department.
       event :mark_as_draft do
-        transitions from: [:confirmed, :billable], to: :draft
+        transitions from: [:confirmed, :billable, :flatrate], to: :draft
       end
     end
 

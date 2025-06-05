@@ -23,17 +23,19 @@ en:
         confirmed_hours: Confirmed hours
         count: Count
         draft_hours: Draft hours
+        flatrate_hours: Flatrate hours
         hours: Hours
         not_billable_hours: Not billable hours
       cmor/time_tracking/project_report_service/result:
+        billable_hours: Billable hours
+        billed_hours: Billed hours
+        confirmed_hours: Confirmed hours
+        draft_hours: Draft hours
+        flatrate_hours: Flatrate hours
+        hours: Hours
         issues_count: Issues count
         items_count: Items count
-        hours: Hours
-        draft_hours: Draft hours
-        confirmed_hours: Confirmed hours
-        billable_hours: Billable hours
         not_billable_hours: Not billable hours
-        billed_hours: Billed hours
       cmor/time_tracking/update_issue_from_external_service:
         issue_id: Issue
   activerecord:
@@ -97,6 +99,7 @@ en:
         confirmed_hours: Confirmed hours
         current_default_rate: Current default rate
         draft_hours: Draft hours
+        flatrate_hours: Flatrate hours
         hours: Hours
         issues_count: Issues count
         items_count: Items count

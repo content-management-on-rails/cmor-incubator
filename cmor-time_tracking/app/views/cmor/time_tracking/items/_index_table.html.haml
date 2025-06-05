@@ -2,7 +2,11 @@
 = table.id sort: true
 = table.association :owner, label_method: :human, sort: { column_name: "users.email" }
 = table.association :project, label_method: :human, sort: { column_name: "cmor_time_tracking_projects.identifier" }, link_to: ->(r) { cmor_time_tracking.url_for(r.project) }
-= table.association :issue, label_method: :human, sort: { column_name: "cmor_time_tracking_issues.identifier" }, link_to: ->(r) { cmor_time_tracking.url_for(r.issue) }
+= table.association :issue, sort: { column_name: "cmor_time_tracking_issues.identifier" } do |r|
+  - capture_haml do
+    - if r.issue.present?
+      - link_to(cmor_time_tracking.url_for(r.issue), title: r.issue.summary) do
+        = r.issue.human
 = table.column :year, sort: true
 = table.column :month, sort: true
 = table.timestamp :start_at, sort: true

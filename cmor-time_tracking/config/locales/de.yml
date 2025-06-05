@@ -23,17 +23,19 @@ de:
         confirmed_hours: Bestätigte Stunden
         count: Anzahl
         draft_hours: Entwurf Stunden
+        flatrate_hours: Flatrate Stunden
         hours: Stunden
         not_billable_hours: Nicht abrechenbare Stunden
       cmor/time_tracking/project_report_service/result:
+        billable_hours: Abrechenbare Stunden
+        billed_hours: Abgerechnete Stunden
+        confirmed_hours: Bestätigte Stunden
+        draft_hours: Entwurf Stunden
+        flatrate_hours: Flatrate Stunden
+        hours: Stunden
         issues_count: Anzahl Tickets
         items_count: Anzahl Buchungen
-        hours: Stunden
-        draft_hours: Entwurf Stunden
-        confirmed_hours: Bestätigte Stunden
-        billable_hours: Abrechenbare Stunden
         not_billable_hours: Nicht abrechenbare Stunden
-        billed_hours: Abgerechnete Stunden
       cmor/time_tracking/update_issue_from_external_service:
         issue_id: Ticket
   activerecord:
@@ -97,6 +99,7 @@ de:
         confirmed_hours: Bestätigte Stunden
         current_default_rate: Aktueller Standard-Stundensatz
         draft_hours: Entwurf Stunden
+        flatrate_hours: Flatrate Stunden
         hours: Stunden
         issues_count: Anzahl Tickets
         items_count: Anzahl Buchungen
