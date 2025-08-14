@@ -77,6 +77,7 @@ module Cmor
         :customfield_10139,
         :customfield_10141,
         :customfield_10142,
+        :customfield_10143,
         :description,
         :duedate,
         :environment,
